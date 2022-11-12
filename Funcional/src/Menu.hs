@@ -1,0 +1,93 @@
+module Menu
+  ( logo,
+    mensagemInicial,
+    iniciaJogo
+  )
+where
+
+import System.Exit
+import Text.Printf
+import Util
+
+import Album
+import Loja
+
+
+
+logo :: IO ()
+logo = do
+  clearScr
+  putStrLn "        =============================================      "
+  putStrLn "              ██████╗ ██████╗ ███████╗██╗ ██████╗          "
+  putStrLn "             ██╔════╝██╔═══██╗██╔════╝██║██╔════╝          "
+  putStrLn "             ██║     ██║   ██║█████╗  ██║██║  ███╗         "
+  putStrLn "             ██║     ██║   ██║██╔══╝  ██║██║   ██║         "
+  putStrLn "             ╚██████╗╚██████╔╝██║     ██║╚██████╔╝         "
+  putStrLn "              ╚═════╝ ╚═════╝ ╚═╝     ╚═╝ ╚═════╝          "
+  putStrLn "        =============================================      "
+
+
+mensagemInicial :: IO()
+mensagemInicial = do
+  putStrLn "                                                                "
+  putStrLn "  <<Seja bem vindo ao seu simulador de Álbum da Copa do Mundo>> "
+  putStrLn "                       <<Deseja iniciar?>>                      "
+  putStrLn "                              1.SIM                             "
+  putStrLn "                              2.NÃO                             "
+  putStrLn "                                                                "
+
+
+menu :: IO()
+menu = do
+  clearScr
+  putStrLn "        ================================================      "
+  putStrLn "             ███╗   ███╗███████╗███╗   ██╗██╗   ██╗           "
+  putStrLn "             ████╗ ████║██╔════╝████╗  ██║██║   ██║           "
+  putStrLn "             ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║           "
+  putStrLn "             ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║           "
+  putStrLn "             ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝           "
+  putStrLn "             ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝            "
+  putStrLn "        ================================================      "
+
+
+menuPrincipal :: IO ()
+menuPrincipal = do
+  clearScr
+  menu
+  putStrLn "                                               "
+  putStrLn "                             1. ALBUM          "
+  putStrLn "                             2. LOJA           "
+  putStrLn "                             3. BAFO           "
+  putStrLn "                                               "
+  navegacao
+
+
+navegacao :: IO()
+navegacao = do 
+  nav <- readLn :: IO Int 
+  if nav == 1
+    then do
+      album
+    else if nav == 2
+      then loja
+      else if nav == 3
+        then print "BAFO"
+        else do 
+          putStr "\nDigite uma opção válida\n"
+          navegacao
+
+    
+
+
+
+iniciaJogo :: IO ()
+iniciaJogo = do
+  opc <- readLn :: IO Int
+  if opc == 1
+    then do 
+      menuPrincipal
+    else if opc == 2
+      then exitSuccess
+      else do
+        putStr "\nDigite uma opção válida\n"
+        iniciaJogo
