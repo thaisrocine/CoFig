@@ -14,13 +14,13 @@ escreverDados = do
                 putStrLn "Digite seu nome: "
                 nome<- getLine
                 
-                hPutStr arq ("Nome do Dono do album: "++ nome)
+                hPutStr arq ("Nome do Dono do album: "++ nome++"\n")
                 putStrLn ("Nome do Dono do album: "++ nome)
                 
                 putStrLn "Digite a quantidade de dinheiro inicial: "
                 qtdDinheiro<- getLine
                 
-                hPutStr arq ("Dinheiro de: "++ nome ++ " R$" ++ qtdDinheiro)
+                hPutStr arq ("Dinheiro de: "++ nome ++ " R$" ++ qtdDinheiro++"\n")
                 putStrLn (nome ++ " Possui: " ++ qtdDinheiro ++ " Reais")
                 
                 hFlush arq 
