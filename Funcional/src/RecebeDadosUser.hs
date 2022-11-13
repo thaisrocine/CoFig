@@ -20,7 +20,7 @@ escreverDados = do
                 putStrLn "Digite a quantidade de dinheiro inicial: "
                 qtdDinheiro<- getLine
                 
-                hPutStr arq ("Dinheiro de: "++ nome ++ " R$" ++ qtdDinheiro++"\n")
+                hPutStr arq ("Dinheiro de "++ nome ++ ": R$" ++ qtdDinheiro++"\n")
                 putStrLn (nome ++ " Possui: " ++ qtdDinheiro ++ " Reais")
                 
                 hFlush arq 
