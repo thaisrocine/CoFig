@@ -1,19 +1,16 @@
 module Menu
   ( logo,
     mensagemInicial,
-    iniciaJogo
+    iniciaJogo,
   )
 where
 
+import Album
+import Loja
+import RecebeDadosUser
 import System.Exit
 import Text.Printf
 import Util
-
-import Album
-import Loja
-import ReceberDadosUser
-
-
 
 logo :: IO ()
 logo = do
@@ -27,8 +24,7 @@ logo = do
   putStrLn "              ╚═════╝ ╚═════╝ ╚═╝     ╚═╝ ╚═════╝          "
   putStrLn "        =============================================      "
 
-
-mensagemInicial :: IO()
+mensagemInicial :: IO ()
 mensagemInicial = do
   putStrLn "                                                                "
   putStrLn "  <<Seja bem vindo ao seu simulador de Álbum da Copa do Mundo>> "
@@ -37,8 +33,7 @@ mensagemInicial = do
   putStrLn "                              2.NÃO                             "
   putStrLn "                                                                "
 
-
-menu :: IO()
+menu :: IO ()
 menu = do
   clearScr
   putStrLn "        ================================================      "
@@ -49,7 +44,6 @@ menu = do
   putStrLn "             ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝           "
   putStrLn "             ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝            "
   putStrLn "        ================================================      "
-
 
 menuPrincipal :: IO ()
 menuPrincipal = do
@@ -62,33 +56,32 @@ menuPrincipal = do
   putStrLn "                                               "
   navegacao
 
-
-navegacao :: IO()
-navegacao = do 
-  nav <- readLn :: IO Int 
+navegacao :: IO ()
+navegacao = do
+  nav <- readLn :: IO Int
   if nav == 1
     then do
       album
-    else if nav == 2
-      then loja
-      else if nav == 3
-        then print "BAFO"
-        else do 
-          putStr "\nDigite uma opção válida\n"
-          navegacao
+    else
+      if nav == 2
+        then loja
+        else
+          if nav == 3
+            then print "BAFO"
+            else do
+              putStr "\nDigite uma opção válida\n"
+              navegacao
 
-    
 
-
-
-iniciaJogo :: IO ()
+iniciaJogo :: IO()
 iniciaJogo = do
   opc <- readLn :: IO Int
   if opc == 1
-    then do 
+    then do
       menuPrincipal
-    else if opc == 2
-      then exitSuccess
-      else do
-        putStr "\nDigite uma opção válida\n"
-        iniciaJogo
+    else
+      if opc == 2
+        then exitSuccess
+        else do
+          putStr "\nDigite uma opção válida\n"
+          iniciaJogo

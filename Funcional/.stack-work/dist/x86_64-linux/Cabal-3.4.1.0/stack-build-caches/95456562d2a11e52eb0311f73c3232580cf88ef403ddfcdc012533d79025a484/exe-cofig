@@ -1,3 +1,7 @@
+/home/paulo/projeto-plp/CoFig/Funcional/CHANGELOG.md:
+  hash: 1b16d4ff20151c7fd26638aedbc9face75dda5cc68179eff8c2f304442dabe5b
+/home/paulo/projeto-plp/CoFig/Funcional/README.md:
+  hash: cca64dc65197749f837fcc1bda4059b49e2b9f98636649dcf76dd87844d0e993
 /home/paulo/projeto-plp/CoFig/Funcional/cofig.cabal:
   hash: af9ab9edf10bf069b300eb54b4fb8a78d87dbe20dbed2964dec9ea007223e004
 /home/paulo/projeto-plp/CoFig/Funcional/src/Album.hs:
@@ -7,6 +11,8 @@
 /home/paulo/projeto-plp/CoFig/Funcional/src/Main.hs:
   hash: 5cf54943b39f2458cf9cfdfac0c17e95471560ff3d44ec076b666c9688657e8e
 /home/paulo/projeto-plp/CoFig/Funcional/src/Menu.hs:
-  hash: a5753553222bbf39960633c76c7b80c72cd76f5bd2d97dbb523d54db6d646d25
+  hash: b3bdb8e81ade917744309815359b0eb35730df8c53790efaa27b3f299a3955c5
+/home/paulo/projeto-plp/CoFig/Funcional/src/RecebeDadosUser.hs:
+  hash: 07e947e9648ef014a77a26a826863ede8b2a92015da13e758b82d4a4b824eb04
 /home/paulo/projeto-plp/CoFig/Funcional/src/Util.hs:
   hash: 4fc35d6f8be1bfd9dec3ed53f5df8153992550ccad1936c49d71b1f1b1204195

@@ -1,5 +1,5 @@
 
-module ReceberDadosUser
+module RecebeDadosUser
   ( escreverDados,
   )
 where
