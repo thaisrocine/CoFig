@@ -58,15 +58,15 @@ menuPrincipal = do
 
 navegacao :: IO ()
 navegacao = do
-  nav <- readLn :: IO Int
-  if nav == 1
+  nav <- getLine :: IO String
+  if nav == "1"
     then do
       album
     else
-      if nav == 2
+      if nav == "2"
         then loja
         else
-          if nav == 3
+          if nav == "3"
             then print "BAFO"
             else do
               putStr "\nDigite uma opção válida\n"
@@ -75,12 +75,12 @@ navegacao = do
 
 iniciaJogo :: IO()
 iniciaJogo = do
-  opc <- readLn :: IO Int
-  if opc == 1
+  opc <- getLine :: IO String
+  if opc == "1"
     then do
       menuPrincipal
     else
-      if opc == 2
+      if opc == "2"
         then exitSuccess
         else do
           putStr "\nDigite uma opção válida\n"
