@@ -6,6 +6,7 @@ where
 
 import Util
 import System.IO
+import System.Random 
 
 escreverDados :: IO ()
 escreverDados = do
@@ -25,3 +26,12 @@ escreverDados = do
                 
                 hFlush arq 
                 hClose arq
+
+randomFig :: IO ()
+    
+randomFig = do 
+         putStrLn "figurinha aleatória"
+         f <- randomRIO (1,250::Int)
+         putStrLn ("Fig aleatória obtida " ++ show f)
+
+
