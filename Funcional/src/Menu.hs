@@ -7,6 +7,7 @@ where
 
 import Album
 import Loja
+import Bafo
 import RecebeDadosUser
 import System.Exit
 import Text.Printf
@@ -35,7 +36,6 @@ mensagemInicial = do
 
 menu :: IO ()
 menu = do
-  clearScr
   putStrLn "        ================================================      "
   putStrLn "             ███╗   ███╗███████╗███╗   ██╗██╗   ██╗           "
   putStrLn "             ████╗ ████║██╔════╝████╗  ██║██║   ██║           "
@@ -47,40 +47,42 @@ menu = do
 
 menuPrincipal :: IO ()
 menuPrincipal = do
-  clearScr
   menu
   putStrLn "                                               "
   putStrLn "                             1. ALBUM          "
   putStrLn "                             2. LOJA           "
   putStrLn "                             3. BAFO           "
+  putStrLn "                             4. FINALIZAR      "
   putStrLn "                                               "
   navegacao
 
 navegacao :: IO ()
 navegacao = do
-  nav <- readLn :: IO Int
-  if nav == 1
+  nav <- getLine :: IO String
+  if nav == "1"
     then do
       album
     else
-      if nav == 2
+      if nav == "2"
         then loja
         else
-          if nav == 3
-            then print "BAFO"
-            else do
+          if nav == "3"
+            then do bafo
+            else
+              if nav == "4" then exitSuccess
+              else do
               putStr "\nDigite uma opção válida\n"
               navegacao
-
+  menuPrincipal
 
 iniciaJogo :: IO()
 iniciaJogo = do
-  opc <- readLn :: IO Int
-  if opc == 1
+  opc <- getLine :: IO String
+  if opc == "1"
     then do
       menuPrincipal
     else
-      if opc == 2
+      if opc == "2"
         then exitSuccess
         else do
           putStr "\nDigite uma opção válida\n"
