@@ -23,6 +23,7 @@ escreverDados = do
                 
                 hPutStr arq ("Dinheiro de "++ nome ++ ": R$" ++ qtdDinheiro++"\n")
                 putStrLn (nome ++ " Possui: " ++ qtdDinheiro ++ " Reais")
+            
                 
                 hFlush arq 
                 hClose arq
@@ -30,8 +31,20 @@ escreverDados = do
 randomFig :: IO ()
     
 randomFig = do 
-         putStrLn "figurinha aleatória"
-         f <- randomRIO (1,250::Int)
-         putStrLn ("Fig aleatória obtida " ++ show f)
+            putStrLn ("Quer continuar comprando digite 1 ")
+            f <- randomRIO (1,250::Int)
+            putStrLn ("Fig aleatória obtida " ++ show f)
+            comprar <- getLine :: IO String
+            
+            if comprar == "1"
+              then randomFig
+    
+    
+            else
+              putStrLn ("Digite opcao valida ")
+
+        
+
+
 
 
