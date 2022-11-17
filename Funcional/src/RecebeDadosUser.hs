@@ -31,18 +31,11 @@ escreverDados = do
 randomFig :: IO ()
     
 randomFig = do 
-            putStrLn ("Quer continuar comprando digite 1 ")
-            f <- randomRIO (1,250::Int)
-            putStrLn ("Fig aleatória obtida " ++ show f)
-            comprar <- getLine :: IO String
-            
-            if comprar == "1"
-              then randomFig
-    
-    
-            else
-              putStrLn ("Digite opcao valida ")
+            x <- readLn :: IO Int
+            g <- getStdGen
+            print $ take x (randomRs (1, 250::Int) g)
 
+            
         
 
 
