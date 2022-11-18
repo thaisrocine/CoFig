@@ -7,6 +7,8 @@ where
 import Util
 import System.IO
 import System.Random 
+import Language.Haskell.TH (arithSeqE)
+import Text.Printf (printf)
 
 escreverDados :: IO ()
 escreverDados = do
@@ -29,14 +31,16 @@ escreverDados = do
                 hClose arq
 
 randomFig :: IO ()
-    
 randomFig = do 
             x <- readLn :: IO Int
-            g <- getStdGen
+            g <- newStdGen
             print $ take x (randomRs (1, 250::Int) g)
+            arq <- openFile "figurinhas.csv" AppendMode
 
+            hPutStr arq (show (take x (randomRs (1, 250::Int) g)) ++ "\n")
+            hFlush arq 
+            hClose arq
             
-        
 
 
 
