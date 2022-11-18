@@ -31,7 +31,9 @@ escreverDados = do
                 hClose arq
 
 randomFig :: IO ()
-randomFig = do 
+randomFig = do
+            putStrLn ("Digite a quantidade de figurinhas")
+
             x <- readLn :: IO Int
             g <- newStdGen
             print $ take x (randomRs (1, 250::Int) g)
@@ -40,6 +42,17 @@ randomFig = do
             hPutStr arq (show (take x (randomRs (1, 250::Int) g)) ++ "\n")
             hFlush arq 
             hClose arq
+            
+            putStrLn("Quer continuar comprando digite 1")
+            comprar <- getLine :: IO String
+
+            if comprar == "1"
+              then randomFig
+
+
+            else
+              putStrLn ("Digite opcao valida ")
+            
             
 
 
