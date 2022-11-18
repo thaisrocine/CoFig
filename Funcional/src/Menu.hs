@@ -47,6 +47,7 @@ menu = do
 
 menuPrincipal :: IO ()
 menuPrincipal = do
+  estaCompleto [False]
   menu
   putStrLn "                                               "
   putStrLn "                             1. ALBUM          "
@@ -87,3 +88,11 @@ iniciaJogo = do
         else do
           putStr "\nDigite uma opção válida\n"
           iniciaJogo
+
+          
+estaCompleto:: [Bool] -> IO()
+estaCompleto [] = do 
+  putStr "\nParabéns você completou o álbum\nObrigado por jogar\n"
+  exitSuccess
+estaCompleto (a:as) = if a == True then estaCompleto as
+  else putStrLn ""

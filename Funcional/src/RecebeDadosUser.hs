@@ -52,9 +52,3 @@ randomFig = do
 
             else
               putStrLn ("Digite opcao valida ")
-            
-            
-
-
-
-
