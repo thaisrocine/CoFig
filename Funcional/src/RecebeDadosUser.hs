@@ -34,14 +34,14 @@ randomFig :: IO ()
 randomFig = do
             putStrLn ("Digite a quantidade de figurinhas")
 
-            x <- readLn :: IO Int
+            quantFig <- readLn :: IO Int
             putStrLn ("Digite a quantidade limite de figurinhas aleatorias possíveis")
-            y <- readLn :: IO Int
+            quantMaxFig <- readLn :: IO Int
             g <- newStdGen
-            print $ take x (randomRs (1,y::Int) g)
+            print $ take quantFig (randomRs (1,quantMaxFig::Int) g)
             arq <- openFile "figurinhas.csv" AppendMode
 
-            hPutStr arq (show (take x (randomRs (1, 250::Int) g)) ++ "\n")
+            hPutStr arq (show (take quantFig (randomRs (1, quantMaxFig::Int) g)) ++ "\n")
             hFlush arq 
             hClose arq
             
