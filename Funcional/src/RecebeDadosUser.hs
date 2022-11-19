@@ -35,8 +35,10 @@ randomFig = do
             putStrLn ("Digite a quantidade de figurinhas")
 
             x <- readLn :: IO Int
+            putStrLn ("Digite a quantidade limite de figurinhas aleatorias possíveis")
+            y <- readLn :: IO Int
             g <- newStdGen
-            print $ take x (randomRs (1, 250::Int) g)
+            print $ take x (randomRs (1,y::Int) g)
             arq <- openFile "figurinhas.csv" AppendMode
 
             hPutStr arq (show (take x (randomRs (1, 250::Int) g)) ++ "\n")
