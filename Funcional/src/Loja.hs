@@ -30,11 +30,22 @@ navegacao :: IO ()
 navegacao = do
   nav <- getLine :: IO String
   if nav == "1"
-    then print "COMPRANDO"
-    else
-      if nav == "2"
-        then putStrLn "VENDENDO"
-        else if nav == "3" then putStrLn ""
-          else do
-            putStr "\nDigite uma opção válida\n"
-            navegacao
+    then do
+      if (verificaDinheiro 1) 
+        then
+          putStrLn "COMPRANDO"
+        else 
+          addDinheiro
+    else if nav == "2" 
+      then do
+        if (verificaRepetidas 1)
+          then
+            putStrLn "VENDENDO"
+          else
+            mensagemSemRepetidas
+      else if nav == "3" 
+        then 
+          putStrLn ""
+        else do
+          putStr "\nDigite uma opção válida\n"
+          navegacao
