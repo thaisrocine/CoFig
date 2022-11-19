@@ -36,12 +36,10 @@ randomFig quantFig quantMaxFig g = print $ take quantFig (randomRs (1,quantMaxFi
 
 main:: IO()
 main = do
-    qFig <- readLn:: IO Int
-    qMaxFig <- readLn:: IO Int
     g <-  newStdGen
-    randomFig qFig qMaxFig g
+    randomFig 5 250 g
     arq <- openFile "figurinhas.csv" AppendMode
-    hPutStr arq (show (take qFig (randomRs (1, qMaxFig::Int) g)) ++ "\n")
+    hPutStr arq (show (take 5 (randomRs (1, 250::Int) g)) ++ "\n")
     hFlush arq 
     hClose arq
 
