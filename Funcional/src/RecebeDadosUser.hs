@@ -30,27 +30,20 @@ escreverDados = do
                 hFlush arq 
                 hClose arq
 
-randomFig :: IO ()
-randomFig = do
-            putStrLn ("Digite a quantidade de figurinhas")
-
-            quantFig <- readLn :: IO Int
-            putStrLn ("Digite a quantidade limite de figurinhas aleatorias possíveis")
-            quantMaxFig <- readLn :: IO Int
-            g <- newStdGen
-            print $ take quantFig (randomRs (1,quantMaxFig::Int) g)
-            arq <- openFile "figurinhas.csv" AppendMode
-
-            hPutStr arq (show (take quantFig (randomRs (1, quantMaxFig::Int) g)) ++ "\n")
-            hFlush arq 
-            hClose arq
-            
-            putStrLn("Quer continuar comprando digite 1")
-            comprar <- getLine :: IO String
-
-            if comprar == "1"
-              then randomFig
+randomFig :: Int -> Int ->StdGen-> IO()
+randomFig quantFig quantMaxFig g = print $ take quantFig (randomRs (1,quantMaxFig::Int) g)
 
 
-            else
-              putStrLn ("Digite opcao valida ")
+main:: IO()
+main = do
+    qFig <- readLn:: IO Int
+    qMaxFig <- readLn:: IO Int
+    g <-  newStdGen
+    randomFig qFig qMaxFig g
+    arq <- openFile "figurinhas.csv" AppendMode
+    hPutStr arq (show (take qFig (randomRs (1, qMaxFig::Int) g)) ++ "\n")
+    hFlush arq 
+    hClose arq
+
+
+
