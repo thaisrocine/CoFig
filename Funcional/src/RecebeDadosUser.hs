@@ -34,8 +34,8 @@ randomFig :: Int -> Int ->StdGen-> IO()
 randomFig quantFig quantMaxFig g = print $ take quantFig (randomRs (1,quantMaxFig::Int) g)
 
 
-main:: IO()
-main = do
+randomNumbers:: IO()
+randomNumbers = do
     g <-  newStdGen
     randomFig 5 250 g
     arq <- openFile "figurinhas.csv" AppendMode
