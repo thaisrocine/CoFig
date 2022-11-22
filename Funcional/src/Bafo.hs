@@ -35,8 +35,22 @@ entradaBafo = do
 
 navegacaoBafo :: String -> IO()
 navegacaoBafo opc
-  | opc == "1" = putStrLn "Apostando"
+  | opc == "1" = do
+    putStrLn "Apostando"
+    apostar
   | opc == "2" = putStrLn " "
   | otherwise = do
     putStr "\nDigite uma opção válida\n"
     entradaBafo
+
+apostar :: IO()
+apostar = do
+  putStrLn "                                                              "
+  putStrLn " <<Digite a quantidade de figurinhas que deseja apostar>>     "
+  putStrLn "                                                              "
+  putStrLn " >> Quantidade:                                               "
+  quantidade <- readLn :: IO Int
+  putStrLn "APOSTANDO FIGURINHAS"
+  continua <- getLine :: IO String
+  putStrLn ""
+

@@ -62,6 +62,8 @@ venda :: IO()
 venda = do
   if (verificaRepetidas 1) then do
     putStrLn "VENDENDO"
+    c <- getLine :: IO String
+    putStrLn ""
   else
     mensagemSemRepetidas
 
