@@ -21,6 +21,7 @@ executable cofig
   build-depends:       base >= 4.7 && < 5
                        , random
                        , strict
+                       , directory
                        , template-haskell
   ghc-options:         -Wall
                        -Wcompat
