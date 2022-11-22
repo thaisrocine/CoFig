@@ -30,8 +30,7 @@ menuLoja = do
   putStrLn "                     2. VENDER REPETIDAS                "
   putStrLn "                     3. MENU INICIAL                    "
   putStrLn "                                                        "
-  navegacao
-
+  entradaLoja
 
 mensagemCompra :: IO()
 mensagemCompra = do
@@ -40,30 +39,32 @@ mensagemCompra = do
   putStrLn "                                                              "
   putStrLn " >> Quantidade:                                               "
 
-navegacao :: IO ()
-navegacao = do
-  nav <- getLine :: IO String
-  if nav == "1"
-    then compra
-    else if nav == "2" 
-      then do
-        if (verificaRepetidas 1)
-          then
-            putStrLn "VENDENDO"
-          else
-            mensagemSemRepetidas
-      else if nav == "3" 
-        then 
-          putStrLn ""
-        else do
-          putStr "\nDigite uma opção válida\n"
-          navegacao
 
 
+entradaLoja :: IO()
+entradaLoja = do
+  opc <- getLine :: IO String
+  navegacaoLoja opc
+
+navegacaoLoja :: String -> IO()
+navegacaoLoja opc
+  | opc == "1" = compra
+  | opc == "2" = venda
+  | opc == "3" = putStrLn " "
+  | otherwise = do
+    putStr "\nDigite uma opção válida\n"
+    entradaLoja
+
+venda :: IO()
+venda = do
+  if (verificaRepetidas 1) then do
+    putStrLn "VENDENDO"
+  else 
+    mensagemSemRepetidas  
 
 compra :: IO()
 compra = do
-  meu_arquivo <- openFile "dinheiro.txt" ReadMode
+  meu_arquivo <- openFile "./arquivos/dinheiro.txt" ReadMode
   conteudo <- hGetContents meu_arquivo
   let valor = (toInt conteudo)
   mensagemCompra
@@ -79,10 +80,11 @@ compra = do
 
 realizaCompra :: Int -> Int -> IO()
 realizaCompra quantidade valor = do
-  arq <- openFile "dinheiro.txt" WriteMode
+  arq <- openFile "./arquivos/dinheiro.txt" WriteMode
   let novo_valor = decrementaDinheiro quantidade valor
   hPutStr arq (show novo_valor)
   putStrLn "Compra realizada com sucesso"
+  c <- getLine :: IO String --continuar
   hFlush arq 
   hClose arq
 

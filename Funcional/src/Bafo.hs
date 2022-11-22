@@ -17,24 +17,26 @@ bafo = do
   putStrLn "             ██████╔╝██║  ██║██║     ╚██████╔╝"
   putStrLn "             ╚═════╝ ╚═╝  ╚═╝╚═╝      ╚═════╝ "
   putStrLn "        =============================================      "
-  menuLoja
+  menuBafo
 
-menuLoja :: IO ()
-menuLoja = do
+menuBafo :: IO ()
+menuBafo = do
   putStrLn "                                              "
   putStrLn "                  1. APOSTAR FIGURINHAS       "
   putStrLn "                  2. MENU INICIAL             "
   putStrLn "                                              "
-  navegacao
+  entradaBafo
 
-navegacao :: IO ()
-navegacao = do
-  nav <- getLine :: IO String
-  if nav == "1"
-    then print "apostando"
-    else
-      if nav == "2"
-        then putStrLn ""
-        else do
-            putStr "\nDigite uma opção válida\n"
-            navegacao
+
+entradaBafo :: IO()
+entradaBafo = do
+  opc <- getLine :: IO String
+  navegacaoBafo opc
+
+navegacaoBafo :: String -> IO()
+navegacaoBafo opc
+  | opc == "1" = putStrLn "Apostando"
+  | opc == "2" = putStrLn " "
+  | otherwise = do
+    putStr "\nDigite uma opção válida\n"
+    entradaBafo

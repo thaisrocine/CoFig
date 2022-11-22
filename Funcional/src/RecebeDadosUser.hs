@@ -38,7 +38,7 @@ randomNumbers:: IO()
 randomNumbers = do
     g <-  newStdGen
     randomFig 5 250 g
-    arq <- openFile "figurinhas.csv" AppendMode
+    arq <- openFile "./arquivos/figurinhas.csv" AppendMode
     hPutStr arq (show (take 5 (randomRs (1, 250::Int) g)) ++ "\n")
     hFlush arq 
     hClose arq

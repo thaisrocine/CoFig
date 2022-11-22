@@ -1,7 +1,6 @@
 module Menu
-  ( logo,
-    mensagemInicial,
-    iniciaJogo,
+  ( run,
+    menu,
   )
 where
 
@@ -12,6 +11,13 @@ import RecebeDadosUser
 import System.Exit
 import Text.Printf
 import Util
+
+
+run :: IO()
+run = do
+  logo
+  mensagemInicial
+
 
 logo :: IO ()
 logo = do
@@ -33,9 +39,11 @@ mensagemInicial = do
   putStrLn "                              1.SIM                             "
   putStrLn "                              2.NÃO                             "
   putStrLn "                                                                "
+  entradaIniciaJogo
 
 menu :: IO ()
 menu = do
+  clearScr
   putStrLn "        ================================================      "
   putStrLn "             ███╗   ███╗███████╗███╗   ██╗██╗   ██╗           "
   putStrLn "             ████╗ ████║██╔════╝████╗  ██║██║   ██║           "
@@ -44,51 +52,55 @@ menu = do
   putStrLn "             ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝           "
   putStrLn "             ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝            "
   putStrLn "        ================================================      "
+  menuPrincipal
 
 menuPrincipal :: IO ()
 menuPrincipal = do
   estaCompleto [False]
-  menu
   putStrLn "                                               "
   putStrLn "                             1. ALBUM          "
   putStrLn "                             2. LOJA           "
   putStrLn "                             3. BAFO           "
   putStrLn "                             4. FINALIZAR      "
   putStrLn "                                               "
-  navegacao
+  entradaMenuPrincipal
 
-navegacao :: IO ()
-navegacao = do
-  nav <- getLine :: IO String
-  if nav == "1"
-    then do
-      album
-    else
-      if nav == "2"
-        then loja
-        else
-          if nav == "3"
-            then do bafo
-            else
-              if nav == "4" then exitSuccess
-              else do
-              putStr "\nDigite uma opção válida\n"
-              navegacao
-  menuPrincipal
 
-iniciaJogo :: IO()
-iniciaJogo = do
+entradaMenuPrincipal :: IO()
+entradaMenuPrincipal = do
   opc <- getLine :: IO String
-  if opc == "1"
-    then do
-      menuPrincipal
-    else
-      if opc == "2"
-        then exitSuccess
-        else do
-          putStr "\nDigite uma opção válida\n"
-          iniciaJogo
+  navegacaoMenu opc
 
+navegacaoMenu :: String -> IO()
+navegacaoMenu opc
+  | opc == "1" = do 
+    album
+    menu
+  | opc == "2" = do 
+    loja
+    menu
+  | opc == "3" = do 
+    bafo
+    menu
+  | opc == "4" = exitSuccess
+  | otherwise = do
+    putStrLn "\nDigite uma opção válida\n"
+    entradaMenuPrincipal
+
+
+entradaIniciaJogo :: IO()
+entradaIniciaJogo = do
+  opc <- getLine :: IO String
+  navegacaoIniciar opc
+
+
+navegacaoIniciar :: String -> IO()
+navegacaoIniciar opc
+  | opc == "1" = menu
+  | opc == "2" = exitSuccess
+  | otherwise = do
+    putStrLn "\nDigite uma opção válida\n"
+    entradaIniciaJogo
           
 estaCompleto:: [Bool] -> IO()
 estaCompleto [] = do 

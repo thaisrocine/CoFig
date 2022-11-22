@@ -24,16 +24,19 @@ menuAlbum = do
   putStrLn "                           1. ESTATISTICAS                  "
   putStrLn "                           2. MENU INICIAL                  "
   putStrLn "                                                            "
-  navegacao
+  entradaAlbum
 
-navegacao :: IO ()
-navegacao = do
-  nav <- getLine :: IO String
-  if nav == "1"
-    then print "ESTATISTICAS"
-    else
-      if nav == "2"
-        then putStrLn ""
-        else do
-            putStr "\nDigite uma opção válida\n"
-            navegacao
+entradaAlbum :: IO()
+entradaAlbum = do
+  opc <- getLine :: IO String
+  navegacaoAlbum opc
+
+
+navegacaoAlbum :: String -> IO()
+navegacaoAlbum opc
+  | opc == "1" = putStrLn "ESTATISTICA"
+  | opc == "2" = putStrLn ""
+  | otherwise = do
+    putStr "\nDigite uma opção válida\n"
+    entradaAlbum
+

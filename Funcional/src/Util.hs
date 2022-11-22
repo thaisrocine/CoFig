@@ -2,7 +2,7 @@ module Util
   ( clearScr,
     verificaRepetidas,
     mensagemSemRepetidas,
-    addDinheiro
+    addDinheiro,
   )
 where
 
@@ -23,7 +23,7 @@ mensagemSemRepetidas :: IO()
 mensagemSemRepetidas = do
   putStrLn "                                                                "
   putStrLn "      <<Parece que você está sem figurinhas repetidas>          "
-  putStrLn "   <<Volte quando tiver pelo menos uma para poder vender>>     "
+  putStrLn "   <<Volte quando tiver pelo menos uma para poder vender>>      "
   putStrLn "                                                                "
 
 
