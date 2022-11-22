@@ -1,6 +1,5 @@
 module Util
   ( clearScr,
-    verificaDinheiro,
     verificaRepetidas,
     mensagemSemRepetidas,
     addDinheiro
@@ -27,10 +26,6 @@ mensagemSemRepetidas = do
   putStrLn "   <<Volte quando tiver pelo menos uma para poder vender>>     "
   putStrLn "                                                                "
 
-
-verificaDinheiro :: Int -> Bool
-verificaDinheiro 0 = False
-verificaDinheiro dinheiro = True
 
 verificaRepetidas :: Int -> Bool
 verificaRepetidas 0 = False
