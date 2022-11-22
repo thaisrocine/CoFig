@@ -1,13 +1,28 @@
 module Util
   ( clearScr,
     verificaRepetidas,
+    mensagemSemDinheiro,
     mensagemSemRepetidas,
+    toInt,
+    verificaValor,
+    alteraDinheiro,
     addDinheiro,
   )
 where
 
+import System.IO
+
+
 clearScr :: IO ()
 clearScr = putStr "\ESC[2J"
+
+toInt :: String -> Int
+toInt n = read n :: Int
+
+verificaValor :: Int -> Int -> Bool
+verificaValor quantidade dinheiro
+  | ((quantidade * 5) - dinheiro <= 0) = True
+  | otherwise = False
 
 
 mensagemSemDinheiro :: IO()
@@ -34,7 +49,14 @@ verificaRepetidas repetidas = True
 
 addDinheiro :: IO()
 addDinheiro = do
-  mensagemSemDinheiro
   valor <- readLn :: IO Int
   print $ valor
   putStrLn "Adicionando dinheiro ao arquivo"
+
+
+alteraDinheiro :: Int -> IO()
+alteraDinheiro novo_valor = do
+  arq <- openFile "./arquivos/dinheiro.txt" WriteMode
+  hPutStr arq (show novo_valor)
+  hFlush arq
+  hClose arq

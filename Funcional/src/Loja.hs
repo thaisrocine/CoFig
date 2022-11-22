@@ -5,6 +5,7 @@ where
 
 
 import System.IO
+import System.IO.Strict as S
 
 import Util
 
@@ -32,6 +33,7 @@ menuLoja = do
   putStrLn "                                                        "
   entradaLoja
 
+
 mensagemCompra :: IO()
 mensagemCompra = do
   putStrLn "                                                              "
@@ -40,11 +42,11 @@ mensagemCompra = do
   putStrLn " >> Quantidade:                                               "
 
 
-
 entradaLoja :: IO()
 entradaLoja = do
   opc <- getLine :: IO String
   navegacaoLoja opc
+
 
 navegacaoLoja :: String -> IO()
 navegacaoLoja opc
@@ -55,50 +57,51 @@ navegacaoLoja opc
     putStr "\nDigite uma opção válida\n"
     entradaLoja
 
+
 venda :: IO()
 venda = do
   if (verificaRepetidas 1) then do
     putStrLn "VENDENDO"
-  else 
-    mensagemSemRepetidas  
+  else
+    mensagemSemRepetidas
+
 
 compra :: IO()
 compra = do
   meu_arquivo <- openFile "./arquivos/dinheiro.txt" ReadMode
-  conteudo <- hGetContents meu_arquivo
-  let valor = (toInt conteudo)
+  conteudo <- S.hGetContents meu_arquivo
+  let valor = toInt (conteudo)
   mensagemCompra
   quantidade <- readLn :: IO Int
   -- validar entrada (numero negativo)
 
   if (verificaValor quantidade valor) then 
     realizaCompra quantidade valor
-  else 
-    addDinheiro
+  else do
+    mensagemSemDinheiro
+    acrescentaDinheiro
 
 
 
 realizaCompra :: Int -> Int -> IO()
 realizaCompra quantidade valor = do
-  arq <- openFile "./arquivos/dinheiro.txt" WriteMode
   let novo_valor = decrementaDinheiro quantidade valor
-  hPutStr arq (show novo_valor)
+  alteraDinheiro novo_valor
   putStrLn "Compra realizada com sucesso"
   c <- getLine :: IO String --continuar
-  hFlush arq 
-  hClose arq
+  putStrLn ""
 
 
 decrementaDinheiro :: Int -> Int -> Int
 decrementaDinheiro quantidade valor = valor - (quantidade * 5)
 
 
-verificaValor :: Int -> Int -> Bool
-verificaValor quantidade dinheiro
-  | ((quantidade * 5) - dinheiro <= 0) = True
-  | otherwise = False
+acrescentaDinheiro :: IO()
+acrescentaDinheiro = do
+  meu_arquivo <- openFile "./arquivos/dinheiro.txt" ReadMode
+  conteudo <- S.hGetContents meu_arquivo
+  let valor = toInt (conteudo)
+  acrescimo <- readLn :: IO Int
+  alteraDinheiro (acrescimo + valor)
 
-
-toInt :: String -> Int
-toInt n = read n :: Int
 
