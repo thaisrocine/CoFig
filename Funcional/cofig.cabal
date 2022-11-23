@@ -23,6 +23,12 @@ executable cofig
                        , strict
                        , directory
                        , template-haskell
+  other-modules:       Album
+                       , Bafo
+                       , Loja
+                       , Menu
+                       , RecebeDadosUser
+                       , Util
   ghc-options:         -Wall
                        -Wcompat
                        -Widentities
