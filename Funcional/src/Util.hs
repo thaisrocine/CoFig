@@ -1,6 +1,6 @@
 module Util
   ( clearScr,
-    verificaRepetidas,
+    verificaQuantidadeRepetidas,
     mensagemSemDinheiro,
     mensagemSemRepetidas,
     mensagemTemRepetidas,
@@ -54,9 +54,9 @@ mensagemSemRepetidas = do
   putStrLn "                                                                "
 
 
-verificaRepetidas :: Int -> Bool
-verificaRepetidas 0 = False
-verificaRepetidas repetidas = True
+verificaQuantidadeRepetidas :: Int -> Bool
+verificaQuantidadeRepetidas 0 = False
+verificaQuantidadeRepetidas repetidas = True
 
 
 alteraDinheiro :: Int -> IO()

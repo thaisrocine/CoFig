@@ -63,7 +63,7 @@ navegacaoLoja opc
 
 venda :: IO()
 venda = do
-  if (verificaRepetidas 1) then do
+  if (verificaQuantidadeRepetidas 1) then do
     putStrLn "VENDENDO"
     c <- getLine :: IO String
     putStrLn ""
@@ -78,14 +78,14 @@ compra = do
   mensagemCompra
   quantidade <- readLn :: IO Int
   -- validar entrada (numero negativo)
-  validacao quantidade valor 10    -- alterar o numero de repetidas
+  validacao quantidade valor 0    -- alterar o numero de repetidas
 
 
 
 validacao :: Int -> Int -> Int -> IO()
 validacao qtdeCompra dinheiro repetidas
   | verificaValor qtdeCompra dinheiro = realizaCompra qtdeCompra dinheiro
-  | verificaRepetidas repetidas = do 
+  | verificaQuantidadeRepetidas repetidas = do 
     mensagemTemRepetidas
     c <- getLine :: IO String
     putStrLn ""
@@ -98,7 +98,7 @@ realizaCompra :: Int -> Int -> IO()
 realizaCompra quantidade valor = do
   let novo_valor = decrementaDinheiro quantidade valor
   alteraDinheiro novo_valor
-  randomNumbers quantidade
+  randomFig quantidade
   putStrLn "Compra realizada com sucesso"
   c <- getLine :: IO String --continuar
   putStrLn ""
@@ -116,16 +116,11 @@ acrescentaDinheiro = do
   alteraDinheiro (acrescimo + valor)
 
 
-randomFig :: Int -> Int ->StdGen-> IO()
-randomFig quantFig quantMaxFig g = print $ take quantFig (randomRs (1,quantMaxFig::Int) g)
+randomNumbers :: Int -> Int ->StdGen-> IO()
+randomNumbers quantFig quantMaxFig g = print $ take quantFig (randomRs (1,quantMaxFig::Int) g)
 
 
-randomNumbers:: Int->IO()
-randomNumbers quant = do
+randomFig:: Int->IO()
+randomFig quant = do
     g <-  newStdGen
-    randomFig (quant*5) 250 g
-    exedir <- getCurrentDirectory
-    arq <- openFile (exedir ++"/src/arquivos/figurinhasCompradas.csv") AppendMode
-    hPutStr arq (show (take (quant* 5) (randomRs (1, 250::Int) g)) ++ "\n")
-    hFlush arq 
-    hClose arq
+    randomNumbers (quant*5) 250 g

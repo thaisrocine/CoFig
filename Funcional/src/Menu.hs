@@ -7,7 +7,6 @@ where
 import Album
 import Loja
 import Bafo
-import RecebeDadosUser
 import System.Exit
 import Text.Printf
 import Util
