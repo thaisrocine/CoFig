@@ -11,6 +11,7 @@ module Util
 where
 
 import System.IO
+import System.Directory
 
 
 clearScr :: IO ()
@@ -56,7 +57,9 @@ addDinheiro = do
 
 alteraDinheiro :: Int -> IO()
 alteraDinheiro novo_valor = do
-  arq <- openFile "./arquivos/dinheiro.txt" WriteMode
+  exedir <- getCurrentDirectory
+  arq <- openFile (exedir ++ "/src/arquivos/dinheiro.txt") WriteMode
   hPutStr arq (show novo_valor)
   hFlush arq
   hClose arq
+
