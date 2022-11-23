@@ -3,6 +3,7 @@ module Util
     verificaRepetidas,
     mensagemSemDinheiro,
     mensagemSemRepetidas,
+    mensagemTemRepetidas,
     toInt,
     verificaValor,
     alteraDinheiro,
@@ -28,13 +29,21 @@ verificaValor quantidade dinheiro
   | otherwise = False
 
 
+
+mensagemTemRepetidas :: IO()
+mensagemTemRepetidas = do
+  putStrLn "                                                                "
+  putStrLn "         <<Você ainda possui figurinhas repetidas>>             "
+  putStrLn "    <<Você pode vendê-las para conseguir mais dinheiro>>        "
+  putStrLn "                                                                "
+
 mensagemSemDinheiro :: IO()
 mensagemSemDinheiro = do
-  putStrLn "                                                                "
-  putStrLn "      <<Que pena, parece que você está sem dinhero>>            "
-  putStrLn "        <<Para continuar jogando insira um valor>>              "
-  putStrLn "                                                                "
-  putStrLn " >> Valor:                                                      "
+  putStrLn "                                                                                      "
+  putStrLn "      <<Que pena, parece que você está sem dinhero e sem figurinhas repetidas>>       "
+  putStrLn "                     <<Para continuar jogando insira um valor>>                       "
+  putStrLn "                                                                                      "
+  putStrLn " >> Valor:                                                                            "
 
 
 mensagemSemRepetidas :: IO()

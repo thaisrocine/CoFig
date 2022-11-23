@@ -75,13 +75,20 @@ compra = do
   mensagemCompra
   quantidade <- readLn :: IO Int
   -- validar entrada (numero negativo)
+  validacao quantidade valor 10    -- alterar o numero de repetidas
 
-  if (verificaValor quantidade valor) then 
-    realizaCompra quantidade valor
-  else do
+
+
+validacao :: Int -> Int -> Int -> IO()
+validacao qtdeCompra dinheiro repetidas
+  | verificaValor qtdeCompra dinheiro = realizaCompra qtdeCompra dinheiro
+  | verificaRepetidas repetidas = do 
+    mensagemTemRepetidas
+    c <- getLine :: IO String
+    putStrLn ""
+  | otherwise = do
     mensagemSemDinheiro
     acrescentaDinheiro
-
 
 
 realizaCompra :: Int -> Int -> IO()
