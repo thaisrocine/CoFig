@@ -5,8 +5,6 @@ where
 
 
 import System.IO
-import System.IO.Strict as S
-import System.Directory
 
 
 import Util
@@ -72,10 +70,8 @@ venda = do
 
 compra :: IO()
 compra = do
-  exedir <- getCurrentDirectory
-  meu_arquivo <- openFile (exedir ++ "/src/arquivos/dinheiro.txt") ReadMode
-  conteudo <- S.hGetContents meu_arquivo
-  let valor = toInt (conteudo)
+  conteudo <- lerArquivo "/src/arquivos/dinheiro.txt"
+  let valor = toInt (head conteudo)
   mensagemCompra
   quantidade <- readLn :: IO Int
   -- validar entrada (numero negativo)
@@ -103,10 +99,8 @@ decrementaDinheiro quantidade valor = valor - (quantidade * 5)
 
 acrescentaDinheiro :: IO()
 acrescentaDinheiro = do
-  exedir <- getCurrentDirectory
-  meu_arquivo <- openFile (exedir ++ "/src/arquivos/dinheiro.txt") ReadMode
-  conteudo <- S.hGetContents meu_arquivo
-  let valor = toInt (conteudo)
+  conteudo <- lerArquivo "/src/arquivos/dinheiro.txt"
+  let valor = toInt (head conteudo)
   acrescimo <- readLn :: IO Int
   alteraDinheiro (acrescimo + valor)
 

@@ -6,12 +6,14 @@ module Util
     toInt,
     verificaValor,
     alteraDinheiro,
-    addDinheiro,
+    lerArquivo,
   )
 where
 
 import System.IO
 import System.Directory
+import System.IO.Strict as S
+
 
 
 clearScr :: IO ()
@@ -48,13 +50,6 @@ verificaRepetidas 0 = False
 verificaRepetidas repetidas = True
 
 
-addDinheiro :: IO()
-addDinheiro = do
-  valor <- readLn :: IO Int
-  print $ valor
-  putStrLn "Adicionando dinheiro ao arquivo"
-
-
 alteraDinheiro :: Int -> IO()
 alteraDinheiro novo_valor = do
   exedir <- getCurrentDirectory
@@ -63,3 +58,10 @@ alteraDinheiro novo_valor = do
   hFlush arq
   hClose arq
 
+
+lerArquivo :: String -> IO [String]
+lerArquivo arquivo = do
+  exedir <- getCurrentDirectory
+  arquivo <- openFile (exedir ++ arquivo) ReadMode
+  conteudo <- S.hGetContents arquivo
+  return $ lines conteudo
