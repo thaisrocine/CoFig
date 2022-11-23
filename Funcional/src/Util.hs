@@ -3,15 +3,18 @@ module Util
     verificaRepetidas,
     mensagemSemDinheiro,
     mensagemSemRepetidas,
+    mensagemTemRepetidas,
     toInt,
     verificaValor,
     alteraDinheiro,
-    addDinheiro,
+    lerArquivo,
   )
 where
 
 import System.IO
 import System.Directory
+import System.IO.Strict as S
+
 
 
 clearScr :: IO ()
@@ -26,13 +29,21 @@ verificaValor quantidade dinheiro
   | otherwise = False
 
 
+
+mensagemTemRepetidas :: IO()
+mensagemTemRepetidas = do
+  putStrLn "                                                                "
+  putStrLn "         <<Você ainda possui figurinhas repetidas>>             "
+  putStrLn "    <<Você pode vendê-las para conseguir mais dinheiro>>        "
+  putStrLn "                                                                "
+
 mensagemSemDinheiro :: IO()
 mensagemSemDinheiro = do
-  putStrLn "                                                                "
-  putStrLn "      <<Que pena, parece que você está sem dinhero>>            "
-  putStrLn "        <<Para continuar jogando insira um valor>>              "
-  putStrLn "                                                                "
-  putStrLn " >> Valor:                                                      "
+  putStrLn "                                                                                      "
+  putStrLn "      <<Que pena, parece que você está sem dinhero e sem figurinhas repetidas>>       "
+  putStrLn "                     <<Para continuar jogando insira um valor>>                       "
+  putStrLn "                                                                                      "
+  putStrLn " >> Valor:                                                                            "
 
 
 mensagemSemRepetidas :: IO()
@@ -48,13 +59,6 @@ verificaRepetidas 0 = False
 verificaRepetidas repetidas = True
 
 
-addDinheiro :: IO()
-addDinheiro = do
-  valor <- readLn :: IO Int
-  print $ valor
-  putStrLn "Adicionando dinheiro ao arquivo"
-
-
 alteraDinheiro :: Int -> IO()
 alteraDinheiro novo_valor = do
   exedir <- getCurrentDirectory
@@ -63,3 +67,10 @@ alteraDinheiro novo_valor = do
   hFlush arq
   hClose arq
 
+
+lerArquivo :: String -> IO [String]
+lerArquivo arquivo = do
+  exedir <- getCurrentDirectory
+  arquivo <- openFile (exedir ++ arquivo) ReadMode
+  conteudo <- S.hGetContents arquivo
+  return $ lines conteudo
