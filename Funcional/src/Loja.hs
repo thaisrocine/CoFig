@@ -5,6 +5,7 @@ where
 
 
 import System.IO
+import System.Random 
 import System.IO.Strict as S
 import System.Directory
 
@@ -92,6 +93,7 @@ realizaCompra :: Int -> Int -> IO()
 realizaCompra quantidade valor = do
   let novo_valor = decrementaDinheiro quantidade valor
   alteraDinheiro novo_valor
+  randomNumbers quantidade
   putStrLn "Compra realizada com sucesso"
   c <- getLine :: IO String --continuar
   putStrLn ""
@@ -111,3 +113,16 @@ acrescentaDinheiro = do
   alteraDinheiro (acrescimo + valor)
 
 
+randomFig :: Int -> Int ->StdGen-> IO()
+randomFig quantFig quantMaxFig g = print $ take quantFig (randomRs (1,quantMaxFig::Int) g)
+
+
+randomNumbers:: Int->IO()
+randomNumbers quant = do
+    g <-  newStdGen
+    randomFig (quant*5) 250 g
+    exedir <- getCurrentDirectory
+    arq <- openFile (exedir ++"/src/arquivos/figurinhasCompradas.csv") AppendMode
+    hPutStr arq (show (take (quant* 5) (randomRs (1, 250::Int) g)) ++ "\n")
+    hFlush arq 
+    hClose arq
