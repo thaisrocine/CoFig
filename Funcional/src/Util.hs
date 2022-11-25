@@ -2,12 +2,15 @@ module Util
   ( clearScr,
     verificaQuantidadeRepetidas,
     mensagemSemDinheiro,
+    mensagemSemDinheiroSemRepetidas,
     mensagemSemRepetidas,
     mensagemTemRepetidas,
     toInt,
     verificaValor,
     alteraDinheiro,
     lerArquivo,
+    continuar,
+    acrescentaDinheiro,
   )
 where
 
@@ -28,7 +31,23 @@ verificaValor quantidade dinheiro
   | ((quantidade * 5) - dinheiro <= 0) = True
   | otherwise = False
 
+verificaRepetidasEDinheiro:: IO()
+verificaRepetidasEDinheiro = do
+  dinheiroTxt <- lerArquivo "/src/arquivos/dinheiro.txt"
+  let dinheiro = toInt (head dinheiroTxt)
+  repetidasTxt <- lerArquivo "/src/arquivos/repetidas.txt"
+  let repetidas = toInt (head repetidasTxt)
+  if dinheiro <= 0 && repetidas <= 0 then do
+    mensagemSemDinheiroSemRepetidas
+    acrescentaDinheiro
+  else putStrLn ""
 
+acrescentaDinheiro :: IO()
+acrescentaDinheiro = do
+  conteudo <- lerArquivo "/src/arquivos/dinheiro.txt"
+  let valor = toInt (head conteudo)
+  acrescimo <- readLn :: IO Int
+  alteraDinheiro (acrescimo + valor)
 
 mensagemTemRepetidas :: IO()
 mensagemTemRepetidas = do
@@ -37,13 +56,21 @@ mensagemTemRepetidas = do
   putStrLn "    <<Você pode vendê-las para conseguir mais dinheiro>>        "
   putStrLn "                                                                "
 
-mensagemSemDinheiro :: IO()
-mensagemSemDinheiro = do
+mensagemSemDinheiroSemRepetidas :: IO()
+mensagemSemDinheiroSemRepetidas = do
   putStrLn "                                                                                      "
   putStrLn "      <<Que pena, parece que você está sem dinhero e sem figurinhas repetidas>>       "
   putStrLn "                     <<Para continuar jogando insira um valor>>                       "
   putStrLn "                                                                                      "
   putStrLn " >> Valor:                                                                            "
+
+
+mensagemSemDinheiro :: IO()
+mensagemSemDinheiro = do
+  putStrLn "                                                                       "
+  putStrLn "      <<Que pena, parece que você não possui dinhero suficente>>       "
+  putStrLn " <<Para continuar venda figurinhas repetidas para conseguir dinheiro>> "
+  putStrLn "                                                                       "
 
 
 mensagemSemRepetidas :: IO()
@@ -67,6 +94,11 @@ alteraDinheiro novo_valor = do
   hFlush arq
   hClose arq
 
+continuar:: IO()
+continuar = do 
+  putStrLn "Presione 'Enter' para continuar"
+  c <- getLine :: IO String
+  putStrLn ""
 
 lerArquivo :: String -> IO [String]
 lerArquivo arquivo = do

@@ -3,16 +3,12 @@ module Loja
   )
 where
 
-
 import System.IO
 import System.Random 
 import System.IO.Strict as S
 import System.Directory
 
-
 import Util
-
-
 
 loja :: IO ()
 loja = do
@@ -36,7 +32,6 @@ menuLoja = do
   putStrLn "                                                        "
   entradaLoja
 
-
 mensagemCompra :: IO()
 mensagemCompra = do
   putStrLn "                                                              "
@@ -44,12 +39,10 @@ mensagemCompra = do
   putStrLn "                                                              "
   putStrLn " >> Quantidade:                                               "
 
-
 entradaLoja :: IO()
 entradaLoja = do
   opc <- getLine :: IO String
   navegacaoLoja opc
-
 
 navegacaoLoja :: String -> IO()
 navegacaoLoja opc
@@ -60,7 +53,6 @@ navegacaoLoja opc
     putStr "\nDigite uma opção válida\n"
     entradaLoja
 
-
 venda :: IO()
 venda = do
   if (verificaQuantidadeRepetidas 1) then do
@@ -70,17 +62,14 @@ venda = do
   else
     mensagemSemRepetidas
 
-
 compra :: IO()
 compra = do
   conteudo <- lerArquivo "/src/arquivos/dinheiro.txt"
   let valor = toInt (head conteudo)
   mensagemCompra
   quantidade <- readLn :: IO Int
-  -- validar entrada (numero negativo)
-  validacao quantidade valor 0    -- alterar o numero de repetidas
-
-
+  if quantidade > 0 then validacao quantidade valor 0    -- alterar o numero de repetidas
+  else putStrLn "Quantidade invalida"
 
 validacao :: Int -> Int -> Int -> IO()
 validacao qtdeCompra dinheiro repetidas
@@ -91,8 +80,7 @@ validacao qtdeCompra dinheiro repetidas
     putStrLn ""
   | otherwise = do
     mensagemSemDinheiro
-    acrescentaDinheiro
-
+    continuar
 
 realizaCompra :: Int -> Int -> IO()
 realizaCompra quantidade valor = do
@@ -100,25 +88,13 @@ realizaCompra quantidade valor = do
   alteraDinheiro novo_valor
   randomFig quantidade
   putStrLn "Compra realizada com sucesso"
-  c <- getLine :: IO String --continuar
-  putStrLn ""
-
+  continuar
 
 decrementaDinheiro :: Int -> Int -> Int
 decrementaDinheiro quantidade valor = valor - (quantidade * 5)
 
-
-acrescentaDinheiro :: IO()
-acrescentaDinheiro = do
-  conteudo <- lerArquivo "/src/arquivos/dinheiro.txt"
-  let valor = toInt (head conteudo)
-  acrescimo <- readLn :: IO Int
-  alteraDinheiro (acrescimo + valor)
-
-
 randomNumbers :: Int -> Int ->StdGen-> IO()
 randomNumbers quantFig quantMaxFig g = print $ take quantFig (randomRs (1,quantMaxFig::Int) g)
-
 
 randomFig:: Int->IO()
 randomFig quant = do
