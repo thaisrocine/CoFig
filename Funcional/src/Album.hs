@@ -43,16 +43,20 @@ navegacaoAlbum opc
 
 estatisticas :: IO()
 estatisticas = do
-  print("")
-  print("")
   putStrLn  "---------------  ESTATÍSTICAS ----------------------------"
   conteudo <- lerArquivo "/src/arquivos/album.csv"
   putStrLn  "      ----Quantidade de Figurinhas coladas---     "
   print(contaVerdadeiros conteudo)
+  putStrLn "       ----------------------    "
   putStrLn "       ----Quantidade de Figurinhas faltantes---    "
   print(contaFalsos conteudo)
-  print(conteudo)
+  putStrLn "       ----------------------    "
+  putStrLn "       ----Porcentagem figurinhas no álbum (%)---    "
+  let quantidadeColadas = contaVerdadeiros conteudo
+  print(quantidadeColadas `div` 250)
+  print(conteudo, "%")
  
+
 
 
 contaVerdadeiros :: [String] -> Int
