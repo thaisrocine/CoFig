@@ -34,9 +34,33 @@ entradaAlbum = do
 
 navegacaoAlbum :: String -> IO()
 navegacaoAlbum opc
-  | opc == "1" = putStrLn "ESTATISTICA"
+  | opc == "1" = estatisticas
   | opc == "2" = putStrLn ""
   | otherwise = do
     putStr "\nDigite uma opção válida\n"
     entradaAlbum
 
+
+estatisticas :: IO()
+estatisticas = do
+  print("")
+  print("")
+  putStrLn  "---------------  ESTATÍSTICAS ----------------------------"
+  conteudo <- lerArquivo "/src/arquivos/album.csv"
+  putStrLn  "      ----Quantidade de Figurinhas coladas---     "
+  print(contaVerdadeiros conteudo)
+  putStrLn "       ----Quantidade de Figurinhas faltantes---    "
+  print(contaFalsos conteudo)
+  print(conteudo)
+ 
+
+
+contaVerdadeiros :: [String] -> Int
+contaVerdadeiros st = length ([s | s <- st,last (reverseString s) == 'T'])
+
+contaFalsos :: [String] -> Int
+contaFalsos st = length ([s | s <- st,last (reverseString s) == 'F'])
+
+reverseString :: [Char] -> [Char]
+reverseString [] = []
+reverseString (x:xs) = reverseString xs ++ [x]
