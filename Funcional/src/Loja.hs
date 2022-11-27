@@ -39,6 +39,13 @@ mensagemCompra = do
   putStrLn "                                                              "
   putStrLn " >> Quantidade:                                               "
 
+mensagemVender :: IO()
+mensagemVender = do
+  putStrLn "                                                              "
+  putStrLn " <<Digite a quantidade de figurinhas que você deseja vender>> "
+  putStrLn "                                                              "
+  putStrLn " >> Quantidade:                                               "
+
 entradaLoja :: IO()
 entradaLoja = do
   opc <- getLine :: IO String
@@ -53,26 +60,47 @@ navegacaoLoja opc
     putStr "\nDigite uma opção válida\n"
     entradaLoja
 
+
 venda :: IO()
 venda = do
-  if (verificaQuantidadeRepetidas 1) then do
-    putStrLn "VENDENDO"
-    c <- getLine :: IO String
-    putStrLn ""
-  else
+  repetidas <- getInt "/src/arquivos/repetidas.txt"
+  mensagemVender
+  quantidade <- readLn :: IO Int
+  if quantidade > 0 then validacaoVenda quantidade repetidas
+  else putStrLn "Quantidade invalida"
+
+
+validacaoVenda :: Int -> Int -> IO()
+validacaoVenda quantidade repetidas
+  | verificaQuantidadeRepetidas repetidas = realizaVenda quantidade repetidas
+  | otherwise = do 
     mensagemSemRepetidas
+    continuar
+
+realizaVenda:: Int -> Int -> IO()
+realizaVenda quantidade repetidas = do
+  dinheiro <- getInt "/src/arquivos/dinheiro.txt"
+  let novo_valor = incrementaDinheiro quantidade dinheiro
+  alteraArquivo "/src/arquivos/dinheiro.txt" novo_valor
+  alteraArquivo "/src/arquivos/repetidas.txt" (repetidas - quantidade)
+  putStrLn "Venda realizada com sucesso"
+  continuar
+
 
 compra :: IO()
 compra = do
-  conteudo <- lerArquivo "/src/arquivos/dinheiro.txt"
-  let valor = toInt (head conteudo)
+  valor <- getInt "/src/arquivos/dinheiro.txt"
+  repetidas <- getInt "/src/arquivos/repetidas.txt"
   mensagemCompra
   quantidade <- readLn :: IO Int
-  if quantidade > 0 then validacao quantidade valor 0    -- alterar o numero de repetidas
+  if quantidade > 0 then validacaoCompra quantidade valor repetidas
   else putStrLn "Quantidade invalida"
 
-validacao :: Int -> Int -> Int -> IO()
-validacao qtdeCompra dinheiro repetidas
+validacaoCompra :: Int -> Int -> Int -> IO()
+validacaoCompra qtdeCompra dinheiro repetidas
+  | dinheiro < 1 && repetidas < 1 = do
+    mensagemSemDinheiroSemRepetidas
+    acrescentaDinheiro
   | verificaValor qtdeCompra dinheiro = realizaCompra qtdeCompra dinheiro
   | verificaQuantidadeRepetidas repetidas = do 
     mensagemTemRepetidas
@@ -85,13 +113,16 @@ validacao qtdeCompra dinheiro repetidas
 realizaCompra :: Int -> Int -> IO()
 realizaCompra quantidade valor = do
   let novo_valor = decrementaDinheiro quantidade valor
-  alteraDinheiro novo_valor
+  alteraArquivo "/src/arquivos/dinheiro.txt" novo_valor
   randomFig quantidade
   putStrLn "Compra realizada com sucesso"
   continuar
 
 decrementaDinheiro :: Int -> Int -> Int
 decrementaDinheiro quantidade valor = valor - (quantidade * 5)
+
+incrementaDinheiro :: Int -> Int -> Int
+incrementaDinheiro quantidade valor = valor + quantidade
 
 randomNumbers :: Int -> Int ->StdGen-> IO()
 randomNumbers quantFig quantMaxFig g = print $ take quantFig (randomRs (1,quantMaxFig::Int) g)

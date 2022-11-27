@@ -7,10 +7,11 @@ module Util
     mensagemTemRepetidas,
     toInt,
     verificaValor,
-    alteraDinheiro,
+    alteraArquivo,
     lerArquivo,
     continuar,
     acrescentaDinheiro,
+    getInt,
   )
 where
 
@@ -31,12 +32,12 @@ verificaValor quantidade dinheiro
   | ((quantidade * 5) - dinheiro <= 0) = True
   | otherwise = False
 
+
+
 verificaRepetidasEDinheiro:: IO()
 verificaRepetidasEDinheiro = do
-  dinheiroTxt <- lerArquivo "/src/arquivos/dinheiro.txt"
-  let dinheiro = toInt (head dinheiroTxt)
-  repetidasTxt <- lerArquivo "/src/arquivos/repetidas.txt"
-  let repetidas = toInt (head repetidasTxt)
+  dinheiro <- getInt "/src/arquivos/dinheiro.txt"
+  repetidas <- getInt "/src/arquivos/repetidas.txt"
   if dinheiro <= 0 && repetidas <= 0 then do
     mensagemSemDinheiroSemRepetidas
     acrescentaDinheiro
@@ -44,10 +45,9 @@ verificaRepetidasEDinheiro = do
 
 acrescentaDinheiro :: IO()
 acrescentaDinheiro = do
-  conteudo <- lerArquivo "/src/arquivos/dinheiro.txt"
-  let valor = toInt (head conteudo)
+  valor <- getInt "/src/arquivos/dinheiro.txt"
   acrescimo <- readLn :: IO Int
-  alteraDinheiro (acrescimo + valor)
+  alteraArquivo ("/src/arquivos/dinheiro.txt") (acrescimo + valor)
 
 mensagemTemRepetidas :: IO()
 mensagemTemRepetidas = do
@@ -86,10 +86,10 @@ verificaQuantidadeRepetidas 0 = False
 verificaQuantidadeRepetidas repetidas = True
 
 
-alteraDinheiro :: Int -> IO()
-alteraDinheiro novo_valor = do
+alteraArquivo :: String -> Int -> IO()
+alteraArquivo arquivo novo_valor = do
   exedir <- getCurrentDirectory
-  arq <- openFile (exedir ++ "/src/arquivos/dinheiro.txt") WriteMode
+  arq <- openFile (exedir ++ arquivo) WriteMode
   hPutStr arq (show novo_valor)
   hFlush arq
   hClose arq
@@ -106,3 +106,10 @@ lerArquivo arquivo = do
   arquivo <- openFile (exedir ++ arquivo) ReadMode
   conteudo <- S.hGetContents arquivo
   return $ lines conteudo
+
+
+getInt :: String -> IO Int
+getInt arquivo = do
+  conteudo <- lerArquivo arquivo
+  let valor = toInt (head conteudo)
+  return $ valor
