@@ -68,14 +68,13 @@ venda = do
   quantidade <- readLn :: IO Int
   if quantidade > 0 then validacaoVenda quantidade repetidas
   else putStrLn "Quantidade invalida"
+  continuar
 
 
 validacaoVenda :: Int -> Int -> IO()
 validacaoVenda quantidade repetidas
-  | verificaQuantidadeRepetidas repetidas = realizaVenda quantidade repetidas
-  | otherwise = do 
-    mensagemSemRepetidas
-    continuar
+  | verificaQuantidadeRepetidas repetidas && quantidade < repetidas = realizaVenda quantidade repetidas
+  | otherwise = mensagemSemRepetidas
 
 realizaVenda:: Int -> Int -> IO()
 realizaVenda quantidade repetidas = do
@@ -84,7 +83,6 @@ realizaVenda quantidade repetidas = do
   alteraArquivo "/src/arquivos/dinheiro.txt" novo_valor
   alteraArquivo "/src/arquivos/repetidas.txt" (repetidas - quantidade)
   putStrLn "Venda realizada com sucesso"
-  continuar
 
 
 compra :: IO()
@@ -94,7 +92,8 @@ compra = do
   mensagemCompra
   quantidade <- readLn :: IO Int
   if quantidade > 0 then validacaoCompra quantidade valor repetidas
-  else putStrLn "Quantidade invalida"
+  else do putStrLn "Quantidade invalida"
+  continuar
 
 validacaoCompra :: Int -> Int -> Int -> IO()
 validacaoCompra qtdeCompra dinheiro repetidas

@@ -76,8 +76,8 @@ mensagemSemDinheiro = do
 mensagemSemRepetidas :: IO()
 mensagemSemRepetidas = do
   putStrLn "                                                                "
-  putStrLn "      <<Parece que você está sem figurinhas repetidas>          "
-  putStrLn "   <<Volte quando tiver pelo menos uma para poder vender>>      "
+  putStrLn " <<Parece que você está sem figurinhas repetidas Suficiente>>   "
+  putStrLn "             <<Volte quando tiver pelo menos uma>>              "
   putStrLn "                                                                "
 
 
