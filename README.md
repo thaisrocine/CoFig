@@ -17,6 +17,11 @@
 
 # Colaboradores
 
+  - Alfredo 
+  - Paulo 
+  - Diego 
+  - Thaís
+  - Pedro
 
   
 
