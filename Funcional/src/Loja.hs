@@ -111,22 +111,21 @@ validacaoCompra qtdeCompra dinheiro repetidas
 
 realizaCompra :: Int -> Int -> IO()
 realizaCompra quantidade valor = do
-  let novo_valor = decrementaDinheiro quantidade valor
-  alteraArquivo "/src/arquivos/dinheiro.txt" novo_valor
-  randomFig quantidade
+  decrementaDinheiro quantidade valor
+  let figurinhas = randomFig quantidade
   putStrLn "Compra realizada com sucesso"
   continuar
 
-decrementaDinheiro :: Int -> Int -> Int
-decrementaDinheiro quantidade valor = valor - (quantidade * 5)
+decrementaDinheiro :: Int -> Int -> IO()
+decrementaDinheiro quantidade valor = alteraArquivo "/src/arquivos/dinheiro.txt"(valor - (quantidade * 5))
 
 incrementaDinheiro :: Int -> Int -> Int
 incrementaDinheiro quantidade valor = valor + quantidade
 
-randomNumbers :: Int -> Int ->StdGen-> IO()
+randomNumbers :: Int -> Int -> StdGen -> IO()
 randomNumbers quantFig quantMaxFig g = print $ take quantFig (randomRs (1,quantMaxFig::Int) g)
 
-randomFig:: Int->IO()
-randomFig quant = do
-    g <-  newStdGen
+randomFig:: Int -> IO()
+randomFig quant = do 
+    g <- newStdGen
     randomNumbers (quant*5) 250 g

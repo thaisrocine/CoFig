@@ -111,3 +111,5 @@ getInt arquivo = do
   conteudo <- lerArquivo arquivo
   let valor = toInt (head conteudo)
   return $ valor
+
+
