@@ -7,10 +7,9 @@
 
 # Tecnologia Utilizada
 
-  Haskell 
-  
-  
 <img scr="./src/cofig.png">
+
+- Haskell
 
 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968259.png" height="100" width="95"> 
 
