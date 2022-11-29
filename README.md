@@ -7,8 +7,11 @@
 
 # Tecnologia Utilizada
 
+<h6> Haskell </h6>
+
 
 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968259.png" height="100" width="95"> 
+
 
 
 # Colaboradores
