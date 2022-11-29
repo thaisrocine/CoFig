@@ -1,2 +1,10 @@
 # CoFig
-Um repositório para a equipe guardar o código do projeto da cadeira de PLP - Paradigmas de Linguagem de Programação. 
+
+Sabemos a importância de colar figurinhas no contexto na copa do mundo, então, com essa preocupação criamos o Cofig, um sistema de gerenciamento de figurinhas.
+
+# Tecnologia Utilizada
+
+Haskell 
+
+
+ 
