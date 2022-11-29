@@ -7,4 +7,8 @@ Sabemos a importância de colar figurinhas no contexto na copa do mundo, então,
 Haskell 
 
 
- 
+#Colaboradores
+
+
+
+# Como utilizar o Cofig?
