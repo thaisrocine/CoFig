@@ -45,6 +45,7 @@ estatisticas :: IO()
 estatisticas = do
   putStrLn  "                                                          "
   putStrLn  "---------------  ESTATÍSTICAS ----------------------------"
+  putStrLn  "                                                          "
   conteudo <- lerArquivo "/src/arquivos/album.csv"
   putStrLn  "        ----Quantidade de Figurinhas coladas---        "
   print(contaVerdadeiros conteudo)
@@ -55,7 +56,7 @@ estatisticas = do
   putStrLn "        ----Porcentagem figurinhas no álbum (%)---      "
   let quantidadeColadas = contaVerdadeiros conteudo
   print(quantidadeColadas `div` 250)
-  print(conteudo)
+  putStrLn  "                                                          "
   putStrLn ""
   continuar
  
