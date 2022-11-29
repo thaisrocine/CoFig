@@ -3,7 +3,7 @@
   Sabemos a importância de colar figurinhas no contexto na copa do mundo, então, com essa preocupação criamos o Cofig, um sistema de gerenciamento de figurinhas.
   
   
-<img src="/src/arquivo/imagem/cofig.png">
+<img src="src/arquivo/imagem/cofig.png">
 
 # Tecnologia Utilizada
 
