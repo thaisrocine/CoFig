@@ -10,7 +10,7 @@
   Haskell 
   
   
-<img scr="\src\imagem\cofig.png">
+<img scr="/src/imagem/cofig.png">
 
 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968259.png" height="100" width="95"> 
 
