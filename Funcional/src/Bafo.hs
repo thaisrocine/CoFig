@@ -50,7 +50,23 @@ apostar = do
   putStrLn "                                                              "
   putStrLn " >> Quantidade:                                               "
   quantidade <- readLn :: IO Int
-  putStrLn "APOSTANDO FIGURINHAS"
-  continua <- getLine :: IO String
-  putStrLn ""
+  if quantidade > 0 then validaAposta quantidade 
+  else do putStrLn "Quantidade invalida"
+  continuar
 
+validaAposta:: Int -> IO()
+validaAposta quantidade = do
+  repetidas <- getInt "/src/arquivos/repetidas.txt"
+  if repetidas <= 0 || quantidade > repetidas then mensagemSemRepetidas
+  else putStrLn "Apostando"
+
+--bafo:: Int -> IO()
+--bafo quantidade = do
+--  qtdBot = apostaBot
+--  putStrLn show qtdBot
+
+
+--apostaBot:: Int -> IO()
+--apostaBot quantidadeJogador = do
+--  g <-  newStdGen
+--  randomNumbers 1 quantidadeJogador g

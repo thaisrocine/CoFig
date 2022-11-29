@@ -32,8 +32,6 @@ verificaValor quantidade dinheiro
   | ((quantidade * 5) - dinheiro <= 0) = True
   | otherwise = False
 
-
-
 verificaRepetidasEDinheiro:: IO()
 verificaRepetidasEDinheiro = do
   dinheiro <- getInt "/src/arquivos/dinheiro.txt"
