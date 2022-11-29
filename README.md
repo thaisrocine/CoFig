@@ -7,7 +7,7 @@
 
 # Tecnologia Utilizada
 
-<img widht="100" height="200" scr="./src/cofig.png">
+<img width="100" height="200" scr="./src/cofig.png">
 
 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968259.png" height="100" width="95"> 
 
