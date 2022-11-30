@@ -12,12 +12,16 @@ module Util
     continuar,
     acrescentaDinheiro,
     getInt,
+    randomNumbers,
+    randomFig,
+    marcarAlbum
   )
 where
 
 import System.IO
 import System.Directory
 import System.IO.Strict as S
+import System.Random 
 
 
 
@@ -46,6 +50,11 @@ acrescentaDinheiro = do
   valor <- getInt "/src/arquivos/dinheiro.txt"
   acrescimo <- readLn :: IO Int
   alteraArquivo ("/src/arquivos/dinheiro.txt") (acrescimo + valor)
+
+acrescentaRepetidas:: IO()
+acrescentaRepetidas = do
+  atual <- getInt "/src/arquivos/repetidas.txt"
+  alteraArquivo ("/src/arquivos/repetidas.txt") (1 + atual)
 
 mensagemTemRepetidas :: IO()
 mensagemTemRepetidas = do
@@ -112,4 +121,56 @@ getInt arquivo = do
   let valor = toInt (head conteudo)
   return $ valor
 
+randomNumbers :: Int -> Int -> StdGen -> [Int]
+randomNumbers quantFig quantMaxFig g = take quantFig (randomRs (1,quantMaxFig::Int) g)
 
+randomFig:: Int -> IO [Int]
+randomFig quant = do 
+    g <- newStdGen
+    let numeros = randomNumbers (quant*5) 250 g
+    return numeros
+
+
+marcarAlbum:: [Int] -> IO()
+marcarAlbum [] = putStrLn ""
+marcarAlbum (h:t) = do
+  atualizaAlbum h
+  marcarAlbum t
+
+
+atualizaAlbum :: Int -> IO()
+atualizaAlbum i = do
+  album <- lerArquivo "/src/arquivos/album.txt"
+  let figurinha = last (take i album)
+  if figurinha == "True" then do
+    acrescentaRepetidas
+  else
+    colaFigurinha album i
+
+colaFigurinha :: [String] -> Int -> IO()
+colaFigurinha album index = do
+  let lista = take (index-1) album ++ ["True"] ++ drop(index) album
+  apagaAlbum
+  alteraAlbum lista
+
+apagaAlbum:: IO()
+apagaAlbum = do
+  exedir <- getCurrentDirectory
+  arq <- openFile (exedir ++ "/src/arquivos/album.txt") WriteMode
+  hPutStr arq ""
+  hFlush arq
+  hClose arq 
+
+alteraAlbum :: [String] -> IO()
+alteraAlbum [] = putStrLn ""
+alteraAlbum (a:as) = do
+  escreveAlbum a
+  alteraAlbum as
+
+escreveAlbum :: String -> IO()
+escreveAlbum str = do
+  exedir <- getCurrentDirectory
+  arq <- openFile (exedir ++ "/src/arquivos/album.txt") AppendMode
+  hPutStrLn arq str
+  hFlush arq
+  hClose arq

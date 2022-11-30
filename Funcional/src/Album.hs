@@ -45,7 +45,7 @@ estatisticas :: IO()
 estatisticas = do
   putStrLn  "                                                          "
   putStrLn  "---------------  ESTATÍSTICAS ----------------------------"
-  conteudo <- lerArquivo "/src/arquivos/album.csv"
+  conteudo <- lerArquivo "/src/arquivos/album.txt"
   putStrLn  "        ----Quantidade de Figurinhas coladas---        "
   print(contaVerdadeiros conteudo)
   putStrLn "                                                        "
@@ -58,8 +58,6 @@ estatisticas = do
   print(conteudo)
   putStrLn ""
   continuar
- 
-
 
 
 contaVerdadeiros :: [String] -> Int

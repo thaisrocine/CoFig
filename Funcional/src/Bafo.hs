@@ -5,6 +5,7 @@ where
 
 import Util
 import System.Exit
+import System.Random 
 
 bafo :: IO ()
 bafo = do
@@ -58,15 +59,12 @@ validaAposta:: Int -> IO()
 validaAposta quantidade = do
   repetidas <- getInt "/src/arquivos/repetidas.txt"
   if repetidas <= 0 || quantidade > repetidas then mensagemSemRepetidas
-  else putStrLn "Apostando"
+  else print "Apostando" 
+--    qtdBot <- apostaBot
+--    print $ show(qtdBot)
 
---bafo:: Int -> IO()
---bafo quantidade = do
---  qtdBot = apostaBot
---  putStrLn show qtdBot
-
-
---apostaBot:: Int -> IO()
+--apostaBot:: Int -> IO [Int]
 --apostaBot quantidadeJogador = do
 --  g <-  newStdGen
---  randomNumbers 1 quantidadeJogador g
+--  let qtd = take 1 (randomNumbers 1 quantidadeJogador g)
+--  return qtd

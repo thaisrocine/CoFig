@@ -55,7 +55,8 @@ menu = do
 
 menuPrincipal :: IO ()
 menuPrincipal = do
-  estaCompleto [False]
+  conteudo <- lerArquivo "/src/arquivos/album.txt"
+  estaCompleto conteudo
   putStrLn "                                               "
   putStrLn "                             1. ALBUM          "
   putStrLn "                             2. LOJA           "
@@ -101,9 +102,9 @@ navegacaoIniciar opc
     putStrLn "\nDigite uma opção válida\n"
     entradaIniciaJogo
           
-estaCompleto:: [Bool] -> IO()
+estaCompleto:: [String] -> IO()
 estaCompleto [] = do 
   putStr "\nParabéns você completou o álbum\nObrigado por jogar\n"
   exitSuccess
-estaCompleto (a:as) = if a == True then estaCompleto as
+estaCompleto (a:as) = if a == "True" then estaCompleto as
   else putStrLn ""
