@@ -58,13 +58,13 @@ apostar = do
 validaAposta:: Int -> IO()
 validaAposta quantidade = do
   repetidas <- getInt "/src/arquivos/repetidas.txt"
-  if repetidas <= 0 || quantidade > repetidas then mensagemSemRepetidas
-  else print "Apostando" 
---    qtdBot <- apostaBot
---    print $ show(qtdBot)
+  if (repetidas <= 0 || quantidade > repetidas) 
+    then mensagemSemRepetidas
+    else do
+        qtdBot <- quantidadeBot quantidade
 
---apostaBot:: Int -> IO [Int]
---apostaBot quantidadeJogador = do
---  g <-  newStdGen
---  let qtd = take 1 (randomNumbers 1 quantidadeJogador g)
---  return qtd
+quantidadeBot:: Int -> IO [Int]
+quantidadeBot quantidadeJogador = do
+ g <-  newStdGen
+ let qtd = take 1 (randomNumbers 1 quantidadeJogador g)
+ return qtd
