@@ -26,3 +26,9 @@
 
 
 # Como utilizar o Cofig?
+
+-stack init 
+
+- stack build
+
+- stack run
