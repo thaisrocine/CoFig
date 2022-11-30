@@ -4,6 +4,7 @@ module Loja
 where
 
 import System.IO
+import System.Random 
 import System.IO.Strict as S
 import System.Directory
 
@@ -99,20 +100,21 @@ validacaoCompra qtdeCompra dinheiro repetidas
   | verificaValor qtdeCompra dinheiro = realizaCompra qtdeCompra dinheiro
   | verificaQuantidadeRepetidas repetidas = do 
     mensagemTemRepetidas
-    continuar
+    c <- getLine :: IO String
+    putStrLn ""
   | otherwise = do
     mensagemSemDinheiro
 
 realizaCompra :: Int -> Int -> IO()
 realizaCompra quantidade valor = do
-  decrementaDinheiro quantidade valor
-  figurinhas <- randomFig quantidade
-  marcarAlbum figurinhas
-  print $ show(figurinhas)
+  let novo_valor = decrementaDinheiro quantidade valor
+  alteraArquivo "/src/arquivos/dinheiro.txt" novo_valor
+  randomFig quantidade
   putStrLn "Compra realizada com sucesso"
+  continuar
 
-decrementaDinheiro :: Int -> Int -> IO()
-decrementaDinheiro quantidade valor = alteraArquivo "/src/arquivos/dinheiro.txt"(valor - (quantidade * 5))
+decrementaDinheiro :: Int -> Int -> Int
+decrementaDinheiro quantidade valor = valor - (quantidade * 5)
 
 incrementaDinheiro :: Int -> Int -> Int
 incrementaDinheiro quantidade valor = valor + quantidade

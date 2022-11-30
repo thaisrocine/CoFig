@@ -102,9 +102,9 @@ navegacaoIniciar opc
     putStrLn "\nDigite uma opção válida\n"
     entradaIniciaJogo
           
-estaCompleto:: [String] -> IO()
+estaCompleto:: [Bool] -> IO()
 estaCompleto [] = do 
   putStr "\nParabéns você completou o álbum\nObrigado por jogar\n"
   exitSuccess
-estaCompleto (a:as) = if a == "True" then estaCompleto as
+estaCompleto (a:as) = if a == True then estaCompleto as
   else putStrLn ""

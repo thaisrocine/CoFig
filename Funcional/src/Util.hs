@@ -12,16 +12,12 @@ module Util
     continuar,
     acrescentaDinheiro,
     getInt,
-    randomNumbers,
-    randomFig,
-    marcarAlbum
   )
 where
 
 import System.IO
 import System.Directory
 import System.IO.Strict as S
-import System.Random 
 
 
 
@@ -50,11 +46,6 @@ acrescentaDinheiro = do
   valor <- getInt "/src/arquivos/dinheiro.txt"
   acrescimo <- readLn :: IO Int
   alteraArquivo ("/src/arquivos/dinheiro.txt") (acrescimo + valor)
-
-acrescentaRepetidas:: IO()
-acrescentaRepetidas = do
-  atual <- getInt "/src/arquivos/repetidas.txt"
-  alteraArquivo ("/src/arquivos/repetidas.txt") (1 + atual)
 
 mensagemTemRepetidas :: IO()
 mensagemTemRepetidas = do

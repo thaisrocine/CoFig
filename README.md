@@ -7,7 +7,7 @@
 
 # Tecnologia Utilizada
 
-<h6> A tecnologia que usamos foi o Haskell </h6>
+<h6> Haskell </h6>
 
 
 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968259.png" height="100" width="95"> 
@@ -26,3 +26,9 @@
 
 
 # Como utilizar o Cofig?
+
+-stack init 
+
+- stack build
+
+- stack run

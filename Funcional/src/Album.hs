@@ -58,6 +58,8 @@ estatisticas = do
   printf "%.2f \n" ((quantidadeColadas / 250.0)* 100)
   putStrLn ""
   continuar
+ 
+
 
 
 contaVerdadeiros :: [String] -> Double
