@@ -46,7 +46,7 @@ estatisticas :: IO()
 estatisticas = do
   putStrLn  "                                                          "
   putStrLn  "---------------  ESTATÍSTICAS ----------------------------"
-  conteudo <- lerArquivo "/src/arquivos/album.csv"
+  conteudo <- lerArquivo "/src/arquivos/album.txt"
   putStrLn  "        ----Quantidade de Figurinhas coladas---        "
   let quantidadeColadas = contaVerdadeiros conteudo
   printf "%.0f \n" quantidadeColadas
