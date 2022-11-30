@@ -62,13 +62,19 @@ validaAposta qtdJogador = do
     mensagemSemRepetidas
   else do
     qtdBot <- quantidadeBot qtdJogador
+    putStrLn ""
+    printf "Quantidade apostada pelo bot: %d \n" qtdBot
+    putStrLn ""
     alteraArquivo "/src/arquivos/repetidas.txt" (repetidas - qtdJogador)
-    figurinhasGanhas <- randomFig (apostaBafo (qtdBot + qtdJogador) 0)
-    putStrLn "As Figurinhas ganhadas foram:"
+    qtdFigurinhas <- apostaBafo (qtdBot + qtdJogador)
+    figurinhasGanhas <- randomFig qtdFigurinhas
+    putStrLn ""
+    putStrLn "As Figurinhas ganhas por você foram:"
     print $ show(figurinhasGanhas)
     putStrLn "Colando Figurinhas"
     marcarAlbum figurinhasGanhas
     putStrLn "As Figurinhas Foram Coladas"
+    putStrLn ""
 
 quantidadeBot:: Int -> IO Int
 quantidadeBot quantidadeJogador = do
@@ -76,21 +82,25 @@ quantidadeBot quantidadeJogador = do
   let qtd = head (randomNumbers 1 quantidadeJogador g)
   return qtd
 
-apostaBafo:: Int -> Int -> Int
-apostaBafo qtdTotal qtdGanha = qtdTotal
---apostaBafo 0 qtdGanha = 0
---apostaBafo qtdTotal qtdGanha = do
---  batida 
---  g <-  newStdGen
---  let viradaJogador = head (randomNumbers 1 qtdTotal g)
---  printf "Viradas por você: %d \n" viradaJogador
---  let viradaBot = head (randomNumbers 1 (qtdTotal - viradaJogador) g)
---  print ("Viradas pelo bot:" ++ viradaBot ++ "\n")
---  apostaBafo 0 viradaJogador
-
+apostaBafo:: Int -> IO Int
+apostaBafo 0 = return 0
+apostaBafo qtdTotal = do
+  batida 
+  gJ <-  newStdGen
+  let viradaJogador = head (randomNumbers 1 qtdTotal gJ)
+  printf "Quantidade de figurinhas viradas por você: %d \n" viradaJogador
+  let qtdTotalAtual = qtdTotal - viradaJogador
+  if qtdTotalAtual > 0 then do
+    gB <-  newStdGen
+    let viradaBot = head (randomNumbers 1 qtdTotalAtual gB)
+    printf "Quantidade de figurinhas viradas pelo Bot: %d \n" viradaBot
+    let qtdTotalFinal = qtdTotalAtual - viradaBot
+    printf "Figurinhas perdidas por você e o bot: %d \n" qtdTotalFinal
+    return viradaJogador
+  else return viradaJogador
   
 batida:: IO()
 batida = do
   putStrLn "Presione 'Enter' para bater figurinha"
   c <- getLine :: IO String
-  putStrLn ""
+  putStr ""
