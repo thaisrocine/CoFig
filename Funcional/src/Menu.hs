@@ -57,6 +57,9 @@ menuPrincipal :: IO ()
 menuPrincipal = do
   conteudo <- lerArquivo "/src/arquivos/album.txt"
   estaCompleto conteudo
+  dinheiro <- getInt "/src/arquivos/dinheiro.txt"
+  repetidas <- getInt "/src/arquivos/repetidas.txt"
+  printf "           Dinheiro: %d  Repetidas: %d \n" dinheiro repetidas
   putStrLn "                                               "
   putStrLn "                             1. ALBUM          "
   putStrLn "                             2. LOJA           "

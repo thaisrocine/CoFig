@@ -72,7 +72,7 @@ venda = do
 
 validacaoVenda :: Int -> Int -> IO()
 validacaoVenda quantidade repetidas
-  | verificaQuantidadeRepetidas repetidas && quantidade < repetidas = realizaVenda quantidade repetidas
+  | verificaQuantidadeRepetidas repetidas && quantidade <= repetidas = realizaVenda quantidade repetidas
   | otherwise = mensagemSemRepetidas
 
 realizaVenda:: Int -> Int -> IO()
@@ -96,13 +96,12 @@ compra = do
 
 validacaoCompra :: Int -> Int -> Int -> IO()
 validacaoCompra qtdeCompra dinheiro repetidas
-  | dinheiro < 1 && repetidas < 1 = do
+  | dinheiro < 5 && repetidas < 5 = do
     mensagemSemDinheiroSemRepetidas
     acrescentaDinheiro
   | verificaValor qtdeCompra dinheiro = realizaCompra qtdeCompra dinheiro
   | verificaQuantidadeRepetidas repetidas = do 
     mensagemTemRepetidas
-    continuar
   | otherwise = do
     mensagemSemDinheiro
 

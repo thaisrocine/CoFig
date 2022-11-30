@@ -58,7 +58,7 @@ validaAposta:: Int -> IO()
 validaAposta quantidade = do
   repetidas <- getInt "/src/arquivos/repetidas.txt"
   if repetidas <= 0 || quantidade > repetidas then mensagemSemRepetidas
-  else putStrLn "" 
+  else putStrLn "Apostando" 
 --    qtdBot <- apostaBot
 --    print $ show(qtdBot)
 
