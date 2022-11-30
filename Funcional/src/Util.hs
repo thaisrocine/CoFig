@@ -132,7 +132,7 @@ randomFig quant = do
 
 
 marcarAlbum:: [Int] -> IO()
-marcarAlbum [] = putStrLn ""
+marcarAlbum [] = putStr ""
 marcarAlbum (h:t) = do
   atualizaAlbum h
   marcarAlbum t
@@ -143,6 +143,7 @@ atualizaAlbum i = do
   album <- lerArquivo "/src/arquivos/album.txt"
   let figurinha = last (take i album)
   if figurinha == "True" then do
+    putStr ("Figurinha " ++ (show i) ++ " é repetida \n")
     acrescentaRepetidas
   else
     colaFigurinha album i
@@ -162,7 +163,7 @@ apagaAlbum = do
   hClose arq 
 
 alteraAlbum :: [String] -> IO()
-alteraAlbum [] = putStrLn ""
+alteraAlbum [] = putStr ""
 alteraAlbum (a:as) = do
   escreveAlbum a
   alteraAlbum as

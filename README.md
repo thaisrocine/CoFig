@@ -26,3 +26,6 @@
 
 
 # Como utilizar o Cofig?
+# Haskell
+- stack init
+- stack run

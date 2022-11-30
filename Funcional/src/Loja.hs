@@ -105,20 +105,19 @@ validacaoCompra qtdeCompra dinheiro repetidas
     continuar
   | otherwise = do
     mensagemSemDinheiro
-    continuar
 
 realizaCompra :: Int -> Int -> IO()
 realizaCompra quantidade valor = do
   decrementaDinheiro quantidade valor
   figurinhas <- randomFig quantidade
-  marcarAlbum figurinhas
+  putStrLn "Figurinhas ganhas:"
   print $ show(figurinhas)
-  putStrLn "Compra realizada com sucesso"
+  putStrLn "Colando Figurinhas"
+  marcarAlbum figurinhas
+  putStrLn "As Figurinhas Foram Coladas"
 
 decrementaDinheiro :: Int -> Int -> IO()
 decrementaDinheiro quantidade valor = alteraArquivo "/src/arquivos/dinheiro.txt"(valor - (quantidade * 5))
 
 incrementaDinheiro :: Int -> Int -> Int
 incrementaDinheiro quantidade valor = valor + quantidade
-
-
