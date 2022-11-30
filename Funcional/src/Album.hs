@@ -4,6 +4,7 @@ module Album
 where
 
 import Util
+import Text.Printf
 
 album :: IO ()
 album = do
@@ -45,23 +46,25 @@ estatisticas :: IO()
 estatisticas = do
   putStrLn  "                                                          "
   putStrLn  "---------------  ESTATÍSTICAS ----------------------------"
-  conteudo <- lerArquivo "/src/arquivos/album.txt"
+  conteudo <- lerArquivo "/src/arquivos/album.csv"
   putStrLn  "        ----Quantidade de Figurinhas coladas---        "
-  print(contaVerdadeiros conteudo)
+  let quantidadeColadas = contaVerdadeiros conteudo
+  printf "%.0f \n" quantidadeColadas
   putStrLn "                                                        "
   putStrLn "        ----Quantidade de Figurinhas faltantes---       "
   print(contaFalsos conteudo)
   putStrLn "                                                        "
   putStrLn "        ----Porcentagem figurinhas no álbum (%)---      "
-  let quantidadeColadas = contaVerdadeiros conteudo
-  print(quantidadeColadas `div` 250)
-  print(conteudo)
+  printf "%.2f \n" ((quantidadeColadas / 250.0)* 100)
   putStrLn ""
   continuar
 
 
-contaVerdadeiros :: [String] -> Int
-contaVerdadeiros st = length ([s | s <- st,last (reverseString s) == 'T'])
+contaVerdadeiros :: [String] -> Double
+contaVerdadeiros [] = 0
+contaVerdadeiros (a:as) = do
+  if a == "True" then 1.0 + contaVerdadeiros as
+  else 0.0 + contaVerdadeiros as
 
 contaFalsos :: [String] -> Int
 contaFalsos st = length ([s | s <- st,last (reverseString s) == 'F'])
