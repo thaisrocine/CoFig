@@ -55,7 +55,7 @@ menu = do
 
 menuPrincipal :: IO ()
 menuPrincipal = do
-  conteudo <- lerArquivo "/src/arquivos/album.txt"
+  conteudo <- lerArquivo "/src/arquivos/album.csv"
   estaCompleto conteudo
   putStrLn "                                               "
   putStrLn "                             1. ALBUM          "

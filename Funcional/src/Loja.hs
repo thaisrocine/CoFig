@@ -96,16 +96,12 @@ compra = do
 
 validacaoCompra :: Int -> Int -> Int -> IO()
 validacaoCompra qtdeCompra dinheiro repetidas
-  | dinheiro < 1 && repetidas < 1 = do
-    mensagemSemDinheiroSemRepetidas
-    acrescentaDinheiro
   | verificaValor qtdeCompra dinheiro = realizaCompra qtdeCompra dinheiro
   | verificaQuantidadeRepetidas repetidas = do 
     mensagemTemRepetidas
     continuar
   | otherwise = do
     mensagemSemDinheiro
-    continuar
 
 realizaCompra :: Int -> Int -> IO()
 realizaCompra quantidade valor = do
@@ -120,5 +116,3 @@ decrementaDinheiro quantidade valor = alteraArquivo "/src/arquivos/dinheiro.txt"
 
 incrementaDinheiro :: Int -> Int -> Int
 incrementaDinheiro quantidade valor = valor + quantidade
-
-

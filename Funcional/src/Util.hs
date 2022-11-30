@@ -140,7 +140,7 @@ marcarAlbum (h:t) = do
 
 atualizaAlbum :: Int -> IO()
 atualizaAlbum i = do
-  album <- lerArquivo "/src/arquivos/album.txt"
+  album <- lerArquivo "/src/arquivos/album.csv"
   let figurinha = last (take i album)
   if figurinha == "True" then do
     acrescentaRepetidas
@@ -156,7 +156,7 @@ colaFigurinha album index = do
 apagaAlbum:: IO()
 apagaAlbum = do
   exedir <- getCurrentDirectory
-  arq <- openFile (exedir ++ "/src/arquivos/album.txt") WriteMode
+  arq <- openFile (exedir ++ "/src/arquivos/album.csv") WriteMode
   hPutStr arq ""
   hFlush arq
   hClose arq 
@@ -170,7 +170,7 @@ alteraAlbum (a:as) = do
 escreveAlbum :: String -> IO()
 escreveAlbum str = do
   exedir <- getCurrentDirectory
-  arq <- openFile (exedir ++ "/src/arquivos/album.txt") AppendMode
+  arq <- openFile (exedir ++ "/src/arquivos/album.csv") AppendMode
   hPutStrLn arq str
   hFlush arq
   hClose arq
