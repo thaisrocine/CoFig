@@ -127,7 +127,7 @@ randomNumbers quantFig quantMaxFig g = take quantFig (randomRs (1,quantMaxFig::I
 randomFig:: Int -> IO [Int]
 randomFig quant = do 
     g <- newStdGen
-    let numeros = randomNumbers (quant*5) 250 g
+    let numeros = randomNumbers quant 250 g
     return numeros
 
 

@@ -6,6 +6,7 @@ where
 import Util
 import System.Exit
 import System.Random 
+import Text.Printf
 
 bafo :: IO ()
 bafo = do
@@ -55,15 +56,41 @@ apostar = do
   continuar
 
 validaAposta:: Int -> IO()
-validaAposta quantidade = do
+validaAposta qtdJogador = do
   repetidas <- getInt "/src/arquivos/repetidas.txt"
-  if repetidas <= 0 || quantidade > repetidas then mensagemSemRepetidas
-  else putStrLn "Apostando" 
---    qtdBot <- apostaBot
---    print $ show(qtdBot)
+  if (repetidas <= 0 || qtdJogador > repetidas) then
+    mensagemSemRepetidas
+  else do
+    qtdBot <- quantidadeBot qtdJogador
+    alteraArquivo "/src/arquivos/repetidas.txt" (repetidas - qtdJogador)
+    figurinhasGanhas <- randomFig (apostaBafo (qtdBot + qtdJogador) 0)
+    putStrLn "As Figurinhas ganhadas foram:"
+    print $ show(figurinhasGanhas)
+    putStrLn "Colando Figurinhas"
+    marcarAlbum figurinhasGanhas
+    putStrLn "As Figurinhas Foram Coladas"
 
---apostaBot:: Int -> IO [Int]
---apostaBot quantidadeJogador = do
+quantidadeBot:: Int -> IO Int
+quantidadeBot quantidadeJogador = do
+  g <-  newStdGen
+  let qtd = head (randomNumbers 1 quantidadeJogador g)
+  return qtd
+
+apostaBafo:: Int -> Int -> Int
+apostaBafo qtdTotal qtdGanha = qtdTotal
+--apostaBafo 0 qtdGanha = 0
+--apostaBafo qtdTotal qtdGanha = do
+--  batida 
 --  g <-  newStdGen
---  let qtd = take 1 (randomNumbers 1 quantidadeJogador g)
---  return qtd
+--  let viradaJogador = head (randomNumbers 1 qtdTotal g)
+--  printf "Viradas por você: %d \n" viradaJogador
+--  let viradaBot = head (randomNumbers 1 (qtdTotal - viradaJogador) g)
+--  print ("Viradas pelo bot:" ++ viradaBot ++ "\n")
+--  apostaBafo 0 viradaJogador
+
+  
+batida:: IO()
+batida = do
+  putStrLn "Presione 'Enter' para bater figurinha"
+  c <- getLine :: IO String
+  putStrLn ""

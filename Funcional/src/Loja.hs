@@ -108,7 +108,7 @@ validacaoCompra qtdeCompra dinheiro repetidas
 realizaCompra :: Int -> Int -> IO()
 realizaCompra quantidade valor = do
   decrementaDinheiro quantidade valor
-  figurinhas <- randomFig quantidade
+  figurinhas <- randomFig (quantidade*5)
   putStrLn "Figurinhas ganhas:"
   print $ show(figurinhas)
   putStrLn "Colando Figurinhas"
