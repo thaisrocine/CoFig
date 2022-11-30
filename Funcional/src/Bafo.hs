@@ -37,7 +37,6 @@ entradaBafo = do
 navegacaoBafo :: String -> IO()
 navegacaoBafo opc
   | opc == "1" = do
-    putStrLn "Apostando"
     apostar
   | opc == "2" = putStrLn " "
   | otherwise = do
@@ -59,7 +58,7 @@ validaAposta:: Int -> IO()
 validaAposta quantidade = do
   repetidas <- getInt "/src/arquivos/repetidas.txt"
   if repetidas <= 0 || quantidade > repetidas then mensagemSemRepetidas
-  else print "Apostando" 
+  else putStrLn "" 
 --    qtdBot <- apostaBot
 --    print $ show(qtdBot)
 
