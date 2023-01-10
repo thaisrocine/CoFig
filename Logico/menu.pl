@@ -1,4 +1,5 @@
 :- include('util.pl').
+:- include('album.pl').
 
 
 run :- 
@@ -38,7 +39,8 @@ iniciaJogo(2):-
     write("encerrar").
 iniciaJogo(_):- 
     write("Digite uma opção válida\n"),
-    entradaIniciaJogo.
+    entradaIniciaJogo,
+    halt.
 
 
 
@@ -61,4 +63,12 @@ menuPrincipal :-
     writeln("                             2. LOJA           "),
     writeln("                             3. BAFO           "),
     writeln("                             4. FINALIZAR      "),
-    writeln("                                               ").
+    writeln("                                               "),
+    entradaMenuPrincipal.
+
+
+entradaMenuPrincipal:- 
+    read(Opc),
+    navegacaoMenu(Opc).
+
+navegacaoMenu(1):- album, menu.
