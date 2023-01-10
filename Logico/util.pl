@@ -1,0 +1,1 @@
+clearScr :- write('\33\[2J').
