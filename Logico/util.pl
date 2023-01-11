@@ -1,3 +1,6 @@
+:- use_module(library(random)).
+
+
 clearScr :- write('\33\[2J').
 
 
@@ -15,6 +18,7 @@ ler_dados(F,[X|L]):-
     ler_dados(F,L).
 
 
+
 getDinheiro :-
     lerArquivo('arquivos/dinheiro.txt', Dados),
     write(Dados).
@@ -28,5 +32,10 @@ getRepetidas :-
 getAlbum :-
     lerArquivo('arquivos/album.txt', Dados),
     write(Dados).
+
+
+randomNum :- 
+    random(1,251,R),
+    write(R).
 
 
