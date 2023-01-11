@@ -44,7 +44,7 @@ mensagemVender :-
 
 
 navegacaoLoja(1) :- compra, menu.
-navegacaoLoja(2) :- write('venda'), menu.
+navegacaoLoja(2) :- venda, menu.
 navegacaoLoja(3) :- menu.
 navegacaoLoja(_) :- write("Digite uma opção válida\n"), entradaLoja.
 

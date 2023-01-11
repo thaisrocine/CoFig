@@ -39,3 +39,32 @@ randomNum :-
     write(R).
 
 
+
+mensagemTemRepetida :-
+    writeln("                                                                "),
+    writeln("         <<Você ainda possui figurinhas repetidas>>             "),
+    writeln("    <<Você pode vendê-las para conseguir mais dinheiro>>        "),
+    writeln("                                                                ").
+
+
+mensagemSemDinheiroSemRepetida :- 
+    writeln("                                                                                      "),
+    writeln("      <<Que pena, parece que você está sem dinhero e sem figurinhas repetidas>>       "),
+    writeln("                     <<Para continuar jogando insira um valor>>                       "),
+    writeln("                                                                                      "),
+    writeln(" >> Valor:                                                                            ").
+
+
+mensagemSemDinheiro :- 
+    writeln("                                                                       "),
+    writeln("      <<Que pena, parece que você não possui dinhero suficente>>       "),
+    writeln(" <<Para continuar venda figurinhas repetidas para conseguir dinheiro>> "),
+    writeln("                                                                       ").
+
+
+mensagemSemRepetidas :- 
+    writeln("                                                                "),
+    writeln(" <<Parece que você está sem figurinhas repetidas Suficiente>>   "),
+    writeln("             <<Volte quando tiver pelo menos uma>>              "),
+    writeln("                                                                ").
+
