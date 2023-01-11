@@ -43,10 +43,23 @@ mensagemVender :-
     writeln(" >> Quantidade:                                               ").
 
 
-navegacaoLoja(1) :- write('compra'), menu.
+navegacaoLoja(1) :- compra, menu.
 navegacaoLoja(2) :- write('venda'), menu.
 navegacaoLoja(3) :- menu.
 navegacaoLoja(_) :- write("Digite uma opção válida\n"), entradaLoja.
 
+
+compra :- 
+    mensagemCompra,
+    read(Quantidade),
+    (Quantidade > 0 -> write('valida compra');
+    write('Quantidade inválida')).
+
+
+venda :-
+    mensagemVender,
+    read(Quantidade),
+    (Quantidade > 0 -> wrtie('valida venda');
+    write('Quantidade inválida')).
 
 
