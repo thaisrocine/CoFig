@@ -1,7 +1,6 @@
 :- include('util.pl').
 :- include('album.pl').
 
-
 run :- 
     logo,
     mensagemInicial.

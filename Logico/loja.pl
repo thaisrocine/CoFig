@@ -4,29 +4,43 @@
 
 loja :-
     clearScr,
-    writeLn("        =============================================      "),
-    writeLn("             ██╗      ██████╗      ██╗ █████╗              "),
-    writeLn("             ██║     ██╔═══██╗     ██║██╔══██╗             "),
-    writeLn("             ██║     ██║   ██║     ██║███████║             "),
-    writeLn("             ██║     ██║   ██║██   ██║██╔══██║             "),
-    writeLn("             ███████╗╚██████╔╝╚█████╔╝██║  ██║             "),
-    writeLn("             ╚══════╝ ╚═════╝  ╚════╝ ╚═╝  ╚═╝             "),
-    writeLn("        =============================================      "),
+    writeln("        =============================================      "),
+    writeln("             ██╗      ██████╗      ██╗ █████╗              "),
+    writeln("             ██║     ██╔═══██╗     ██║██╔══██╗             "),
+    writeln("             ██║     ██║   ██║     ██║███████║             "),
+    writeln("             ██║     ██║   ██║██   ██║██╔══██║             "),
+    writeln("             ███████╗╚██████╔╝╚█████╔╝██║  ██║             "),
+    writeln("             ╚══════╝ ╚═════╝  ╚════╝ ╚═╝  ╚═╝             "),
+    writeln("        =============================================      "),
     menuLoja.
 
 
 menuLoja :-
-  writeLn("                                                        "),
-  writeLn("                     1. COMPRAR PACOTINHOS              "),
-  writeLn("                     2. VENDER REPETIDAS                "),
-  writeLn("                     3. MENU INICIAL                    "),
-  writeLn("                                                        "),
-  entradaLoja.
+    writeln("                                                        "),
+    writeln("                     1. COMPRAR PACOTINHOS              "),
+    writeln("                     2. VENDER REPETIDAS                "),
+    writeln("                     3. MENU INICIAL                    "),
+    writeln("                                                        "),
+    entradaLoja.
 
 
 entradaLoja:-
     read(Opc),
     navegacaoLoja(Opc).
+
+
+mensagemCompra :- 
+    writeln("                                                              "),
+    writeln(" <<Digite a quantidade de pacotinhos que você deseja comprar>>"),
+    writeln("                                                              "),
+    writeln(" >> Quantidade:                                               ").
+
+
+mensagemVender :- 
+    writeln("                                                              "),
+    writeln(" <<Digite a quantidade de figurinhas que você deseja vender>> "),
+    writeln("                                                              "),
+    writeln(" >> Quantidade:                                               ").
 
 
 navegacaoLoja(1) :- write('compra'), menu.
