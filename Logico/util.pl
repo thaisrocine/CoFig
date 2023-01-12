@@ -11,7 +11,6 @@ lerArquivo(FilePath, Dados):-
    
 ler_dados(F,[]):-
     at_end_of_stream(F).
-   
 ler_dados(F,[X|L]):-
     \+  at_end_of_stream(F),
     read(F,X),
@@ -33,9 +32,8 @@ getAlbum :-
     write(Dados).
 
 
-randomNum :- 
-    random(1,251,R),
-    write(R).
+randomNum(Quantidade,Lista) :- 
+    randseq(Quantidade,251,Lista).
 
 
 
@@ -43,6 +41,12 @@ mensagemTemRepetida :-
     writeln("                                                                "),
     writeln("         <<Você ainda possui figurinhas repetidas>>             "),
     writeln("    <<Você pode vendê-las para conseguir mais dinheiro>>        "),
+    writeln("                                                                ").
+
+mensagemSemRepetidas :- 
+    writeln("                                                                "),
+    writeln(" <<Parece que você está sem figurinhas repetidas Suficiente>>   "),
+    writeln("             <<Volte quando tiver pelo menos uma>>              "),
     writeln("                                                                ").
 
 
@@ -59,11 +63,4 @@ mensagemSemDinheiro :-
     writeln("      <<Que pena, parece que você não possui dinhero suficente>>       "),
     writeln(" <<Para continuar venda figurinhas repetidas para conseguir dinheiro>> "),
     writeln("                                                                       ").
-
-
-mensagemSemRepetidas :- 
-    writeln("                                                                "),
-    writeln(" <<Parece que você está sem figurinhas repetidas Suficiente>>   "),
-    writeln("             <<Volte quando tiver pelo menos uma>>              "),
-    writeln("                                                                ").
 
