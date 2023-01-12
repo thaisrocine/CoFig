@@ -50,7 +50,7 @@ navegacaoLoja(_) :- write("Digite uma opção válida\n"), entradaLoja.
 
 
 compra :- 
-    mensagemCompra
+    mensagemCompra,
     read(Quantidade),
     getDinheiro(Dinheiro), 
     getRepetidas(Repetidas),
