@@ -31,15 +31,9 @@ entradaIniciaJogo :-
     iniciaJogo(Opc).
 
 
-iniciaJogo(1):-
-    menu,
-    menuPrincipal.
-iniciaJogo(2):- 
-    write("encerrar").
-iniciaJogo(_):- 
-    write("Digite uma opção válida\n"),
-    entradaIniciaJogo,
-    halt.
+iniciaJogo(1):- menu, menuPrincipal.
+iniciaJogo(2):- write("encerrar").
+iniciaJogo(_):- write("Digite uma opção válida\n"), entradaIniciaJogo, halt.
 
 
 
@@ -71,3 +65,7 @@ entradaMenuPrincipal:-
     navegacaoMenu(Opc).
 
 navegacaoMenu(1):- album, menu.
+navegacaoMenu(2):- loja, menu.
+navegacaoMenu(3):- bafo, menu.
+navegacaoMenu(4):- write('finalizar').
+navegacaoMenu(_):- write("Digite uma opção válida\n"), entradaMenuPrincipal.
