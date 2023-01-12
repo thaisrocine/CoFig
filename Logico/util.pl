@@ -18,15 +18,14 @@ ler_dados(F,[X|L]):-
     ler_dados(F,L).
 
 
-
-getDinheiro :-
+getDinheiro(R) :-
     lerArquivo('arquivos/dinheiro.txt', Dados),
-    write(Dados).
+    last(Dados, R).
 
 
-getRepetidas :-
+getRepetidas(R) :-
     lerArquivo('arquivos/repetidas.txt', Dados),
-    write(Dados).
+    last(Dados, R).
 
 
 getAlbum :-
