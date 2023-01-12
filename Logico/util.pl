@@ -73,3 +73,9 @@ acrescentaDinheiro :-
     read(Acrescimo),
     NovoValor is Atual + Acrescimo,
     alteraArquivo('arquivos/dinheiro.txt', NovoValor).
+
+
+acrescentaRepetidas :-
+    getRepetidas(Atual),
+    NovoValor is Atual + 1,
+    alteraArquivo('arquivos/repetidas.txt', NovoValor).
