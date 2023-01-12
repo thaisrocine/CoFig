@@ -67,6 +67,12 @@ mensagemSemDinheiro :-
     writeln(" <<Para continuar venda figurinhas repetidas para conseguir dinheiro>> "),
     writeln("                                                                       ").
 
+verificaDinheiroERepetida :-
+    getDinheiro(Dinheiro),
+    getRepetidas(Repetidas),
+    Dinheiro =< 0, Repetidas =< 0,
+    acrescentaDinheiro.
+
 
 acrescentaDinheiro :-
     getDinheiro(Atual),
