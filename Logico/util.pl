@@ -6,7 +6,7 @@ clearScr :- write('\33\[2J').
 
 lerArquivo(FilePath, Dados):-
     open(FilePath,read,F),
-    ler_dados(F,Dados),
+    ler_dados(F,Dados), !,
     close(F).
    
 ler_dados(F,[]):-
@@ -15,6 +15,12 @@ ler_dados(F,[X|L]):-
     \+  at_end_of_stream(F),
     read(F,X),
     ler_dados(F,L).
+
+
+alteraArquivo(FilePath, NovoValor) :-
+    tell(FilePath),
+    write(NovoValor), write('.'),
+    told.
 
 
 getDinheiro(R) :-
@@ -32,10 +38,7 @@ getAlbum :-
     write(Dados).
 
 
-randomNum(Quantidade,Lista) :- 
-    randseq(Quantidade,251,Lista).
-
-
+randomNum(Quantidade,Lista) :- randseq(Quantidade,251,Lista).
 
 mensagemTemRepetida :-
     writeln("                                                                "),
@@ -64,3 +67,9 @@ mensagemSemDinheiro :-
     writeln(" <<Para continuar venda figurinhas repetidas para conseguir dinheiro>> "),
     writeln("                                                                       ").
 
+
+acrescentaDinheiro :-
+    getDinheiro(Atual),
+    read(Acrescimo),
+    NovoValor is Atual + Acrescimo,
+    alteraArquivo('arquivos/dinheiro.txt', NovoValor).
