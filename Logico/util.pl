@@ -38,7 +38,7 @@ getAlbum :-
     write(Dados).
 
 
-randomNum(Quantidade,Lista) :- randseq(Quantidade,251,Lista).
+randomNum(Quantidade, Limite, Lista) :- randseq(Quantidade, Limite, Lista).
 
 mensagemTemRepetida :-
     writeln("                                                                "),
@@ -67,13 +67,6 @@ mensagemSemDinheiro :-
     writeln(" <<Para continuar venda figurinhas repetidas para conseguir dinheiro>> "),
     writeln("                                                                       ").
 
-verificaDinheiroERepetida :-
-    getDinheiro(Dinheiro),
-    getRepetidas(Repetidas),
-    Dinheiro =< 0, Repetidas =< 0,
-    acrescentaDinheiro.
-
-
 acrescentaDinheiro :-
     getDinheiro(Atual),
     read(Acrescimo),
@@ -85,3 +78,10 @@ acrescentaRepetidas :-
     getRepetidas(Atual),
     NovoValor is Atual + 1,
     alteraArquivo('arquivos/repetidas.txt', NovoValor).
+
+
+verificaDinheiroERepetida :-
+    getDinheiro(Dinheiro),
+    getRepetidas(Repetidas),
+    Dinheiro =< 0, Repetidas =< 0,
+    acrescentaDinheiro.

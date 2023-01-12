@@ -67,5 +67,5 @@ entradaMenuPrincipal:-
 navegacaoMenu(1):- album, menu.
 navegacaoMenu(2):- loja, menu.
 navegacaoMenu(3):- bafo, menu.
-navegacaoMenu(4):- write('finalizar').
+navegacaoMenu(4):- halt.
 navegacaoMenu(_):- write("Digite uma opção válida\n"), entradaMenuPrincipal.
