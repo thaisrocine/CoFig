@@ -40,6 +40,8 @@ getAlbum :-
 
 randomNum(Quantidade, Limite, Lista) :- randseq(Quantidade, Limite, Lista).
 
+gerarPacotinho(Quantidade, Figurinhas) :- randomNum(Quantidade * 5, 251, Figurinhas).
+
 mensagemTemRepetida :-
     writeln("                                                                "),
     writeln("         <<Você ainda possui figurinhas repetidas>>             "),
