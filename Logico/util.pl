@@ -70,9 +70,8 @@ mensagemSemDinheiro :-
     writeln("                                                                       ").
 
 
-acrescentaDinheiro :-
+acrescentaDinheiro(Acrescimo) :-
     getDinheiro(Atual),
-    read(Acrescimo),
     NovoValor is Atual + Acrescimo,
     alteraArquivo('arquivos/dinheiro.txt', NovoValor).
 
@@ -81,7 +80,6 @@ decrementaDinheiro(Quantidade) :-
     getDinheiro(Atual),
     NovoValor is Atual - (Quantidade * 5),
     alteraArquivo('arquivos/dinheiro.txt', NovoValor).
-
 
 acrescentaRepetidas :-
     getRepetidas(Atual),
