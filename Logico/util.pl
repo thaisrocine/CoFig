@@ -82,6 +82,11 @@ acrescentaRepetidas :-
     NovoValor is Atual + 1,
     alteraArquivo('arquivos/repetidas.txt', NovoValor).
 
+decrementaRepetidas(Quantidade) :- 
+    getRepetidas(Atual),
+    NovoValor is Atual - Quantidade,
+    alteraArquivo('arquivos/repetidas.txt', NovoValor).
+
 
 verificaDinheiroERepetida :-
     getDinheiro(Dinheiro),
