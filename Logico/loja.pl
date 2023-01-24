@@ -41,25 +41,24 @@ mensagemVender :-
     writeln(" >> Quantidade:                                               ").
 
 
-navegacaoLoja(1) :- compra.
-navegacaoLoja(2) :- venda.
-navegacaoLoja(3) :- write('').
-navegacaoLoja(_) :- write("Digite uma opção válida\n"), entradaLoja.
+navegacaoLoja(1):- compra, loja.
+navegacaoLoja(2):- venda, loja.
+navegacaoLoja(3):- write('').
+navegacaoLoja(_):- write("Digite uma opção válida\n"), entradaLoja.
 
 
 compra :- 
     mensagemCompra,
     read(Quantidade),
-    getDinheiro(Dinheiro), 
-    getRepetidas(Repetidas),
-    (Quantidade > 0 -> validaCompra(Quantidade, Dinheiro, Repetidas);
+    (Quantidade > 0 -> write('valida compra');
     write('Quantidade inválida')).
 
 
-validaCompra(Quantidade, Dinheiro, Repetidas) :-
+validaCompra(Quantidade) :-
+    getDinheiro(Dinheiro), 
+    getRepetidas(Repetidas),
     Dinheiro < 5, Repetidas < 5,
-    mensagemSemDinheiroSemRepetida, 
-    acrescentaDinheiro.
+    mensagemSemDinheiroSemRepetida.
 
 
 venda :-
@@ -67,4 +66,12 @@ venda :-
     read(Quantidade),
     (Quantidade > 0 -> write('valida venda');
     write('Quantidade inválida')).
+
+
+validaVenda(Quantidade) :-
+    getRepetidas(Repetidas),
+    (Quantidade =< Repetidas -> decrementaRepetidas(Quantidade);
+    mensagemSemRepetidas).
+
+    
 
