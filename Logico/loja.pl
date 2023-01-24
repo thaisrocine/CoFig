@@ -1,9 +1,7 @@
 :- include('util.pl').
-:- include('menu.pl').
-
 
 loja :-
-    clearScr,
+    shell(clear),
     writeln("        =============================================      "),
     writeln("             ██╗      ██████╗      ██╗ █████╗              "),
     writeln("             ██║     ██╔═══██╗     ██║██╔══██╗             "),
@@ -43,9 +41,9 @@ mensagemVender :-
     writeln(" >> Quantidade:                                               ").
 
 
-navegacaoLoja(1) :- compra, menu.
-navegacaoLoja(2) :- venda, menu.
-navegacaoLoja(3) :- menu.
+navegacaoLoja(1) :- compra.
+navegacaoLoja(2) :- venda.
+navegacaoLoja(3) :- write('').
 navegacaoLoja(_) :- write("Digite uma opção válida\n"), entradaLoja.
 
 
@@ -67,6 +65,6 @@ validaCompra(Quantidade, Dinheiro, Repetidas) :-
 venda :-
     mensagemVender,
     read(Quantidade),
-    (Quantidade > 0 -> wrtie('valida venda');
+    (Quantidade > 0 -> write('valida venda');
     write('Quantidade inválida')).
 

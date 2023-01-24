@@ -1,9 +1,7 @@
 :- include('util.pl').
-:- include('menu.pl').
-
 
 bafo :- 
-    clearScr,
+    shell(clear),
     writeln("        =============================================      "),
     writeln("             ██████╗  █████╗ ███████╗ ██████╗              "),
     writeln("             ██╔══██╗██╔══██╗██╔════╝██╔═══██╗             "),
@@ -34,6 +32,6 @@ entradaBafo :-
     navegacaoBafo(Opc).
 
 
-navegacaoBafo(1) :- mensagemApostar, menu.
-navegacaoBafo(2) :- menu.
+navegacaoBafo(1) :- mensagemApostar.
+navegacaoBafo(2) :- write('').
 navegacaoBafo(_) :- write("Digite uma opção válida\n"), entradaBafo.

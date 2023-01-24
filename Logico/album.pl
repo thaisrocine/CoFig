@@ -1,8 +1,6 @@
-:- include('util.pl').
-:- include('menu.pl').
 
 album :-
-    clearScr,
+    shell(clear),
     writeln("          ======================================================      "),
     writeln("                █████╗ ██╗     ██████╗ ██╗   ██╗███╗   ███╗           "),
     writeln("               ██╔══██╗██║     ██╔══██╗██║   ██║████╗ ████║           "),
@@ -28,6 +26,6 @@ entradaAlbum:-
 
 
 navegacaoAlbum(1):- write('estatistica').
-navegacaoAlbum(2):- menu.
+navegacaoAlbum(2):- write('').
 navegacaoAlbum(_):- write("Digite uma opção válida\n"), entradaAlbum.
 

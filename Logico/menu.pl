@@ -1,12 +1,13 @@
-:- include('util.pl').
+:- include('loja.pl').
 :- include('album.pl').
+:- include('bafo.pl').
 
 run :- 
     logo,
     mensagemInicial.
 
 logo :-
-    clearScr,
+    shell(clear),
     writeln("        =============================================      "),
     writeln("              ██████╗ ██████╗ ███████╗██╗ ██████╗          "),
     writeln("             ██╔════╝██╔═══██╗██╔════╝██║██╔════╝          "),
@@ -31,14 +32,15 @@ entradaIniciaJogo :-
     iniciaJogo(Opc).
 
 
-iniciaJogo(1):- menu, menuPrincipal.
-iniciaJogo(2):- write("encerrar").
+iniciaJogo(1):- menu.
+iniciaJogo(2):- halt.
 iniciaJogo(_):- write("Digite uma opção válida\n"), entradaIniciaJogo, halt.
 
 
 
 menu :-
-    clearScr,
+    shell(clear),
+    writeln("                                                              "),
     writeln("        ================================================      "),
     writeln("             ███╗   ███╗███████╗███╗   ██╗██╗   ██╗           "),
     writeln("             ████╗ ████║██╔════╝████╗  ██║██║   ██║           "),
@@ -46,7 +48,8 @@ menu :-
     writeln("             ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║           "),
     writeln("             ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝           "),
     writeln("             ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝            "),
-    writeln("        ================================================      ").
+    writeln("        ================================================      "),
+    menuPrincipal.
 
 
 
@@ -64,8 +67,8 @@ entradaMenuPrincipal:-
     read(Opc),
     navegacaoMenu(Opc).
 
-navegacaoMenu(1):- album, menu.
-navegacaoMenu(2):- loja, menu.
-navegacaoMenu(3):- bafo, menu.
-navegacaoMenu(4):- halt.
-navegacaoMenu(_):- write("Digite uma opção válida\n"), entradaMenuPrincipal.
+navegacaoMenu(1) :- album, menu.
+navegacaoMenu(2) :- loja, menu.
+navegacaoMenu(3) :- bafo, menu.
+navegacaoMenu(4) :- halt.
+navegacaoMenu(_) :- write("Digite uma opção válida\n"), entradaMenuPrincipal.

@@ -1,9 +1,5 @@
 :- use_module(library(random)).
 
-
-clearScr :- write('\33\[2J').
-
-
 lerArquivo(FilePath, Dados):-
     open(FilePath,read,F),
     ler_dados(F,Dados), !,
