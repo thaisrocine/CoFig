@@ -64,14 +64,15 @@ validaCompra(Quantidade) :-
 venda :-
     mensagemVender,
     read(Quantidade),
-    (Quantidade > 0 -> write('valida venda');
+    (Quantidade > 0 -> validaVenda(Quantidade);
     write('Quantidade inválida')).
 
 
 validaVenda(Quantidade) :-
     getRepetidas(Repetidas),
     (Quantidade =< Repetidas -> decrementaRepetidas(Quantidade);
-    mensagemSemRepetidas).
+    mensagemSemRepetidas, 
+    continuar).
 
     
 
