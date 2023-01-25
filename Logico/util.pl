@@ -37,11 +37,10 @@ randomNum(Quantidade, Limite, Lista) :- randseq(Quantidade, Limite, Lista).
 
 gerarPacotinho(Quantidade, Figurinhas) :- randomNum(Quantidade * 5, 251, Figurinhas).
 
-# Validar
 continuar :- 
-    write("Digite 'C.' para continuar"),
+    writeln("Digite 'C.' para continuar"),
     read(X),
-    write('').
+    writeln('').
 
 
 mensagemTemRepetida :-
