@@ -41,7 +41,7 @@ continuar :-
     writeln("Digite 'C.' para continuar"),
     read(X),
     writeln('').
-
+    
 
 mensagemTemRepetida :-
     writeln("                                                                "),

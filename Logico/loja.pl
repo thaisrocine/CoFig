@@ -70,7 +70,9 @@ venda :-
 
 validaVenda(Quantidade) :-
     getRepetidas(Repetidas),
-    (Quantidade =< Repetidas -> decrementaRepetidas(Quantidade);
+    (Quantidade =< Repetidas -> 
+    decrementaRepetidas(Quantidade),
+    acrescentaDinheiro(Quantidade);
     mensagemSemRepetidas, 
     continuar).
 
