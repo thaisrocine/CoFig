@@ -38,8 +38,8 @@ randomNum(Quantidade, Limite, Lista) :- randseq(Quantidade, Limite, Lista).
 gerarPacotinho(Quantidade, Figurinhas) :- randomNum(Quantidade * 5, 251, Figurinhas).
 
 continuar :- 
-    writeln("Digite 'C.' para continuar"),
-    read(X),
+    writeln("Presione 'Enter' para continuar"),
+    read_line_to_string(user_input, X),
     writeln('').
     
 

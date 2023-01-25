@@ -28,7 +28,9 @@ mensagemInicial :-
     entradaIniciaJogo.
 
 entradaIniciaJogo :- 
-    read(Opc),
+    read_line_to_string(user_input, Opcs),
+    string_to_atom(Opcs,Opca),
+    atom_number(Opca,Opc),
     iniciaJogo(Opc).
 
 
@@ -64,7 +66,9 @@ menuPrincipal :-
 
 
 entradaMenuPrincipal:- 
-    read(Opc),
+    read_line_to_string(user_input, Opcs),
+    string_to_atom(Opcs,Opca),
+    atom_number(Opca,Opc),
     navegacaoMenu(Opc).
 
 navegacaoMenu(1) :- album, menu.

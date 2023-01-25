@@ -22,7 +22,9 @@ menuAlbum :-
 
 
 entradaAlbum:-
-    read(Opc),
+    read_line_to_string(user_input, Opcs),
+    string_to_atom(Opcs,Opca),
+    atom_number(Opca,Opc),
     navegacaoAlbum(Opc).
 
 

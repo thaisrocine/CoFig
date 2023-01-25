@@ -23,7 +23,9 @@ menuLoja :-
 
 
 entradaLoja:-
-    read(Opc),
+    read_line_to_string(user_input, Opcs),
+    string_to_atom(Opcs,Opca),
+    atom_number(Opca,Opc),
     navegacaoLoja(Opc).
 
 
@@ -49,7 +51,9 @@ navegacaoLoja(_):- write("Digite uma opção válida\n"), entradaLoja.
 
 compra :- 
     mensagemCompra,
-    read(Quantidade),
+    read_line_to_string(user_input, QuantidadeS),
+    string_to_atom(QuantidadeS,QuantidadeA),
+    atom_number(QuantidadeA,Quantidade),
     (Quantidade > 0 -> writeln('valida compra');
     write('Quantidade inválida')).
 
@@ -63,7 +67,9 @@ validaCompra(Quantidade) :-
 
 venda :-
     mensagemVender,
-    read(Quantidade),
+    read_line_to_string(user_input, QuantidadeS),
+    string_to_atom(QuantidadeS,QuantidadeA),
+    atom_number(QuantidadeA,Quantidade),
     (Quantidade > 0 -> validaVenda(Quantidade);
     write('Quantidade inválida')).
 
