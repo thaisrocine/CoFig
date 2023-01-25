@@ -50,7 +50,7 @@ navegacaoLoja(_):- write("Digite uma opção válida\n"), entradaLoja.
 compra :- 
     mensagemCompra,
     read(Quantidade),
-    (Quantidade > 0 -> write('valida compra');
+    (Quantidade > 0 -> writeln('valida compra');
     write('Quantidade inválida')).
 
 
