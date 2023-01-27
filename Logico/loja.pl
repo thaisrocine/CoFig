@@ -54,15 +54,18 @@ compra :-
     read_line_to_string(user_input, QuantidadeS),
     string_to_atom(QuantidadeS,QuantidadeA),
     atom_number(QuantidadeA,Quantidade),
-    (Quantidade > 0 -> writeln('valida compra');
+    (Quantidade > 0 -> validaCompra(Quantidade);
     write('Quantidade inválida')).
 
 
 validaCompra(Quantidade) :-
     getDinheiro(Dinheiro), 
-    getRepetidas(Repetidas),
-    Dinheiro < 5, Repetidas < 5,
-    mensagemSemDinheiroSemRepetida.
+    getRepetidas(Repetidas)
+    ,((Dinheiro + Repetidas) < 5 ->
+        mensagemSemDinheiroSemRepetida, read_line_to_string(user_input, AcrescimoS),
+        string_to_atom(AcrescimoS, AcrescimoA), atom_number(AcrescimoA, Acrescimo), 
+        acrescentaDinheiro(Acrescimo) 
+        ; (Quantidade * 5) > Dinheiro -> mensagemSemDinheiro, continuar; write(Quantidade)).
 
 
 venda :-
@@ -81,6 +84,3 @@ validaVenda(Quantidade) :-
     acrescentaDinheiro(Quantidade);
     mensagemSemRepetidas, 
     continuar).
-
-    
-
