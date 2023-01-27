@@ -12,7 +12,6 @@ loja :-
     writeln("        =============================================      "),
     menuLoja.
 
-
 menuLoja :-
     writeln("                                                        "),
     writeln("                     1. COMPRAR PACOTINHOS              "),
@@ -21,13 +20,11 @@ menuLoja :-
     writeln("                                                        "),
     entradaLoja.
 
-
 entradaLoja:-
     read_line_to_string(user_input, Opcs),
     string_to_atom(Opcs,Opca),
     atom_number(Opca,Opc),
     navegacaoLoja(Opc).
-
 
 mensagemCompra :- 
     writeln("                                                              "),
@@ -35,19 +32,16 @@ mensagemCompra :-
     writeln("                                                              "),
     writeln(" >> Quantidade:                                               ").
 
-
 mensagemVender :- 
     writeln("                                                              "),
     writeln(" <<Digite a quantidade de figurinhas que você deseja vender>> "),
     writeln("                                                              "),
     writeln(" >> Quantidade:                                               ").
 
-
 navegacaoLoja(1):- compra, loja.
 navegacaoLoja(2):- venda, loja.
 navegacaoLoja(3):- write('').
 navegacaoLoja(_):- write("Digite uma opção válida\n"), entradaLoja.
-
 
 compra :- 
     mensagemCompra,
@@ -56,7 +50,6 @@ compra :-
     atom_number(QuantidadeA,Quantidade),
     (Quantidade > 0 -> validaCompra(Quantidade);
     write('Quantidade inválida')).
-
 
 validaCompra(Quantidade) :-
     getDinheiro(Dinheiro), 
@@ -73,10 +66,8 @@ realizaCompra(Quantidade) :-
     write("Figurinhas ganhas: "),
     writeln(Figurinhas),
     writeln("Colando Figurinhas"),
+    marcarAlbum(Figurinhas),
     writeln("Figurinhas Coladas").
-
-
-
 
 venda :-
     mensagemVender,
@@ -85,7 +76,6 @@ venda :-
     atom_number(QuantidadeA,Quantidade),
     (Quantidade > 0 -> validaVenda(Quantidade);
     write('Quantidade inválida')).
-
 
 validaVenda(Quantidade) :-
     getRepetidas(Repetidas),

@@ -35,28 +35,20 @@ navegacaoAlbum(_):- write("Digite uma opção válida\n"), entradaAlbum.
 estatistica :-
     shell(clear),
     getAlbum(Album),
+    contaFigurinhas(Album, Possui, NPossui),
     writeln("                                                        "),
     writeln("                 <<ESTATÍSTICAS>>                       "),
     writeln("                                                        \n"),
     writeln("        <<Quantidade de Figurinhas coladas>>            \n"),
-    contaVerdadeiro(Album, V),
-    writeln(V),
+    writeln(Possui),
     writeln("        <<Quantidade de Figurinhas faltantes>>            \n"),
-    contaFalso(Album, F),
-    writeln(F),
+    writeln(NPossui),
     writeln("        <<Porcentagem figurinhas no álbum (%)>>          \n"),
-    P is (V / 250) * 100,
+    P is (Possui / 250) * 100,
     format('~2f', [P]),
     writeln("\n\n"),
     continuar.
 
-
-
-
-contaVerdadeiro([], 0).
-contaVerdadeiro([true|T], C):- contaVerdadeiro(T,C1), C is C1 + 1.
-contaVerdadeiro([_|T], C):- contaVerdadeiro(T,C).
-
-contaFalso([], 0).
-contaFalso([false|T], C):- contaFalso(T,C1), C is C1 + 1.
-contaFalso([_|T], C):- contaFalso(T,C).
+contaFigurinhas([], 0, 0).
+contaFigurinhas([row(_, true)|T], V, F):- contaFigurinhas(T, V1, F), V is V1 + 1.
+contaFigurinhas([row(_, false)|T], V, F):- contaFigurinhas(T, V, F1), F is F1 + 1.
