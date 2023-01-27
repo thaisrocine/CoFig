@@ -65,7 +65,17 @@ validaCompra(Quantidade) :-
         mensagemSemDinheiroSemRepetida, read_line_to_string(user_input, AcrescimoS),
         string_to_atom(AcrescimoS, AcrescimoA), atom_number(AcrescimoA, Acrescimo), 
         acrescentaDinheiro(Acrescimo) 
-        ; (Quantidade * 5) > Dinheiro -> mensagemSemDinheiro, continuar; write(Quantidade)).
+        ; (Quantidade * 5) > Dinheiro -> mensagemSemDinheiro, continuar ; realizaCompra(Quantidade), continuar).
+
+realizaCompra(Quantidade) :- 
+    decrementaDinheiro(Quantidade),
+    gerarPacotinho(Quantidade, Figurinhas),
+    write("Figurinhas ganhas: "),
+    writeln(Figurinhas),
+    writeln("Colando Figurinhas"),
+    writeln("Figurinhas Coladas").
+
+
 
 
 venda :-

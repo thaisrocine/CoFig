@@ -34,7 +34,6 @@ getAlbum(R) :- lerArquivo('arquivos/album.txt', R).
 
 randomNum(Quantidade, Limite, Lista) :- randseq(Quantidade, Limite, Lista).
 
-
 gerarPacotinho(Quantidade, Figurinhas) :- 
     NewQtde is Quantidade * 5,
     randomNum(NewQtde, 251, Figurinhas).
