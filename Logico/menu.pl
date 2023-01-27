@@ -1,6 +1,7 @@
 :- include('loja.pl').
 :- include('album.pl').
 :- include('bafo.pl').
+:- include('util.pl').
 
 run :- 
     logo,
@@ -56,6 +57,7 @@ menu :-
 
 
 menuPrincipal :-
+    getDinheiro(Dinheiro), getRepetidas(Repetidas), write("Dinheiro: "), write(Dinheiro), write("  Repetidas: "), writeln(Repetidas),
     writeln("                                               "),
     writeln("                             1. ALBUM          "),
     writeln("                             2. LOJA           "),
