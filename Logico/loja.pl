@@ -49,7 +49,7 @@ compra :-
     string_to_atom(QuantidadeS,QuantidadeA),
     atom_number(QuantidadeA,Quantidade),
     (Quantidade > 0 -> validaCompra(Quantidade);
-    write('Quantidade inválida'), continuar).
+    writeln('Quantidade inválida'), continuar).
 
 validaCompra(Quantidade) :-
     getDinheiro(Dinheiro), 
@@ -75,7 +75,7 @@ venda :-
     string_to_atom(QuantidadeS,QuantidadeA),
     atom_number(QuantidadeA,Quantidade),
     (Quantidade > 0 -> validaVenda(Quantidade);
-    write('Quantidade inválida'), continuar).
+    writeln('Quantidade inválida'), continuar).
 
 validaVenda(Quantidade) :-
     getRepetidas(Repetidas),
