@@ -42,6 +42,18 @@ apostar :-
     read_line_to_string(user_input, QuantidadeS),
     string_to_atom(QuantidadeS,QuantidadeA),
     atom_number(QuantidadeA,Quantidade),
-    (Quantidade > 0 -> write('valida aposta');
-    write('Quantidade inválida')).
+    (Quantidade > 0 -> validaAposta(Quantidade), continuar;
+    write('Quantidade inválida'), continuar).
 
+validaAposta(Quantidade) :- 
+    getRepetidas(Repetidas),
+    (Quantidade > Repetidas -> mensagemSemRepetidas;
+    Limite is Quantidade + 3, random(1, Limite, QtdBot),write('Quantidade apostada pelo bot: '),
+    writeln(QtdBot), writeln('Decrementa Repetidas Jogador'),QtdApostada is QtdBot + Quantidade,
+    apostaBafo(QtdApostada, QtdGanha), writeln(QtdGanha)).
+
+apostaBafo(QtdApostada, QtdGanha) :-
+    writeln("Presione 'Enter' para bater figurinha"), read_line_to_string(user_input, X), random(0, QtdApostada, QtdGanha),
+    write("Quantidade de figurinhas viradas por você: "), writeln(QtdGanha), Restante is (QtdApostada - QtdGanha) + 1, random(0, Restante, QtdBot),
+    write("Quantidade de figurinhas viradas pelo Bot: "), writeln(QtdBot), Perdidas is Restante - QtdBot - 1,
+    write("Figurinhas perdidas por você e o bot: "), writeln(Perdidas).
