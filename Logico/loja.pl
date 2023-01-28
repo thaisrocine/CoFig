@@ -22,9 +22,7 @@ menuLoja :-
     entradaLoja.
 
 entradaLoja:-
-    read_line_to_string(user_input, Opcs),
-    string_to_atom(Opcs,Opca),
-    atom_number(Opca,Opc),
+    read_line_to_string(user_input, Opc),
     navegacaoLoja(Opc).
 
 mensagemCompra :- 
@@ -39,9 +37,9 @@ mensagemVender :-
     writeln("                                                              "),
     writeln(" >> Quantidade:                                               ").
 
-navegacaoLoja(1):- compra, loja.
-navegacaoLoja(2):- venda, loja.
-navegacaoLoja(3):- write('').
+navegacaoLoja("1"):- compra, loja.
+navegacaoLoja("2"):- venda, loja.
+navegacaoLoja("3"):- write('').
 navegacaoLoja(_):- write("Digite uma opção válida\n"), entradaLoja.
 
 compra :- 

@@ -29,13 +29,11 @@ mensagemApostar :-
     writeln(" >> Quantidade:                                               ").
 
 entradaBafo :-
-    read_line_to_string(user_input, Opcs),
-    string_to_atom(Opcs,Opca),
-    atom_number(Opca,Opc),
+    read_line_to_string(user_input, Opc),
     navegacaoBafo(Opc).
 
-navegacaoBafo(1) :- apostar, bafo.
-navegacaoBafo(2) :- write('').
+navegacaoBafo("1") :- apostar, bafo.
+navegacaoBafo("2") :- write('').
 navegacaoBafo(_) :- write("Digite uma opção válida\n"), entradaBafo.
 
 apostar :- 

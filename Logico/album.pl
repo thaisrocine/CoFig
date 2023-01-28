@@ -22,14 +22,12 @@ menuAlbum :-
 
 
 entradaAlbum:-
-    read_line_to_string(user_input, Opcs),
-    string_to_atom(Opcs,Opca),
-    atom_number(Opca,Opc),
+    read_line_to_string(user_input, Opc),
     navegacaoAlbum(Opc).
 
 
-navegacaoAlbum(1):- estatistica, album.
-navegacaoAlbum(2):- write('').
+navegacaoAlbum("1"):- estatistica, album.
+navegacaoAlbum("2"):- write('').
 navegacaoAlbum(_):- write("Digite uma opção válida\n"), entradaAlbum.
 
 estatistica :-

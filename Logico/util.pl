@@ -38,12 +38,6 @@ continuar :-
     writeln("Presione 'Enter' para continuar"),
     read_line_to_string(user_input, X),
     writeln('').
-    
-mensagemTemRepetida :-
-    writeln("                                                                "),
-    writeln("         <<Você ainda possui figurinhas repetidas>>             "),
-    writeln("    <<Você pode vendê-las para conseguir mais dinheiro>>        "),
-    writeln("                                                                ").
 
 mensagemSemRepetidas :- 
     writeln("                                                                "),
