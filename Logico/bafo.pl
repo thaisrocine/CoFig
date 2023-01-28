@@ -43,14 +43,16 @@ apostar :-
     string_to_atom(QuantidadeS,QuantidadeA),
     atom_number(QuantidadeA,Quantidade),
     (Quantidade > 0 -> validaAposta(Quantidade), continuar;
-    write('Quantidade inválida'), continuar).
+    writeln('Quantidade inválida'), continuar).
 
 validaAposta(Quantidade) :- 
     getRepetidas(Repetidas),
     (Quantidade > Repetidas -> mensagemSemRepetidas;
     Limite is Quantidade + 3, random(1, Limite, QtdBot),write('Quantidade apostada pelo bot: '),
-    writeln(QtdBot), writeln('Decrementa Repetidas Jogador'),QtdApostada is QtdBot + Quantidade,
-    apostaBafo(QtdApostada, QtdGanha), writeln(QtdGanha)).
+    writeln(QtdBot), decrementaRepetidas(Quantidade), QtdApostada is QtdBot + Quantidade,
+    apostaBafo(QtdApostada, QtdGanha), randomNum(QtdGanha, 251, Figurinhas),
+    write('As Figurinhas ganhas por você foram: '), writeln(Figurinhas),
+    writeln("Colando Figurinhas"), marcarAlbum(Figurinhas), writeln("Figurinhas Coladas")).
 
 apostaBafo(QtdApostada, QtdGanha) :-
     writeln("Presione 'Enter' para bater figurinha"), read_line_to_string(user_input, X), random(0, QtdApostada, QtdGanha),
