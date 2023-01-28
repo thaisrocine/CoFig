@@ -14,6 +14,7 @@ bafo :-
 
 
 menuBafo :- 
+    getDinheiro(Dinheiro), getRepetidas(Repetidas), write("Dinheiro: "), write(Dinheiro), write("  Repetidas: "), writeln(Repetidas),
     writeln("                                              "),
     writeln("                  1. APOSTAR FIGURINHAS       "),
     writeln("                  2. MENU INICIAL             "),

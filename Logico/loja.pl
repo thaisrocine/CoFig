@@ -13,6 +13,7 @@ loja :-
     menuLoja.
 
 menuLoja :-
+    getDinheiro(Dinheiro), getRepetidas(Repetidas), write("Dinheiro: "), write(Dinheiro), write("  Repetidas: "), writeln(Repetidas),
     writeln("                                                        "),
     writeln("                     1. COMPRAR PACOTINHOS              "),
     writeln("                     2. VENDER REPETIDAS                "),
