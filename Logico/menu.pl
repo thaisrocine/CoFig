@@ -4,7 +4,7 @@
 :- include('util.pl').
 
 menu :-
-    shell(clear),
+    verificaDinheiroERepetida, shell(clear),
     writeln("                                                              "),
     writeln("        ================================================      "),
     writeln("             ███╗   ███╗███████╗███╗   ██╗██╗   ██╗           "),

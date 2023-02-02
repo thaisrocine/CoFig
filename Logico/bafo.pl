@@ -1,7 +1,7 @@
 :- include('util.pl').
 
 bafo :- 
-    shell(clear),
+    verificaDinheiroERepetida, shell(clear),
     writeln("        =============================================      "),
     writeln("             ██████╗  █████╗ ███████╗ ██████╗              "),
     writeln("             ██╔══██╗██╔══██╗██╔════╝██╔═══██╗             "),

@@ -1,7 +1,7 @@
 :- include('util.pl').
 
 loja :-
-    shell(clear),
+    verificaDinheiroERepetida, shell(clear),
     writeln("        =============================================      "),
     writeln("             ██╗      ██████╗      ██╗ █████╗              "),
     writeln("             ██║     ██╔═══██╗     ██║██╔══██╗             "),
