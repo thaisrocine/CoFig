@@ -28,7 +28,7 @@ getRepetidas(R) :-
 
 getAlbum(A) :- csv_read_file('arquivos/album.csv', A).
 
-randomNum(Quantidade, Limite, Lista) :- randseq(Quantidade, Limite, Lista).
+randomNum(Quantidade, Limite, Lista) :- length(Lista, Limite), maplist(random(0,Limite), Lista).
 
 gerarPacotinho(Quantidade, Figurinhas) :- 
     NewQtde is Quantidade * 5,
