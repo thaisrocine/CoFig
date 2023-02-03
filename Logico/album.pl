@@ -1,7 +1,7 @@
 :-include('util.pl').
 
 album :-
-    verificaDinheiroERepetida, shell(clear),
+    shell(clear),
     writeln("          ======================================================      "),
     writeln("                █████╗ ██╗     ██████╗ ██╗   ██╗███╗   ███╗           "),
     writeln("               ██╔══██╗██║     ██╔══██╗██║   ██║████╗ ████║           "),

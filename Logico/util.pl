@@ -81,10 +81,8 @@ decrementaRepetidas(Quantidade) :-
 verificaDinheiroERepetida :-
     getDinheiro(Dinheiro),
     getRepetidas(Repetidas),
-    Dinheiro + Repetidas < 5,
-    mensagemSemDinheiroSemRepetida, read_line_to_string(user_input, AcrescimoS),
-    string_to_atom(AcrescimoS, AcrescimoA), atom_number(AcrescimoA, Acrescimo), 
-    acrescentaDinheiro(Acrescimo).
+    Dinheiro =< 0, Repetidas =< 0,
+    acrescentaDinheiro.
 
 marcarAlbum([]).
 
