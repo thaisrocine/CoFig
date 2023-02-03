@@ -3,8 +3,17 @@
 :- include('bafo.pl').
 :- include('util.pl').
 
+finalizaJogo :-
+getAlbum(Album),
+contaFigurinhas(Album, Possui, NPossui),
+(NPossui == 0 ->
+writeln("\nParabéns, você conseguiu todas as figurinhas!"),continuar,halt;
+writeln("")
+).
+
 menu :-
-    shell(clear),
+
+    finalizaJogo,shell(clear),
     writeln("                                                              "),
     writeln("        ================================================      "),
     writeln("             ███╗   ███╗███████╗███╗   ██╗██╗   ██╗           "),
@@ -26,7 +35,9 @@ menuPrincipal :-
     writeln("                             3. BAFO           "),
     writeln("                             4. FINALIZAR      "),
     writeln("                                               "),
+    
     entradaMenuPrincipal.
+
 
 
 entradaMenuPrincipal:- 
@@ -37,4 +48,5 @@ navegacaoMenu("1") :- album, menu.
 navegacaoMenu("2") :- loja, menu.
 navegacaoMenu("3") :- bafo, menu.
 navegacaoMenu("4") :- halt.
+
 navegacaoMenu(_) :- write("Digite uma opção válida\n"), entradaMenuPrincipal.

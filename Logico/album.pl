@@ -30,6 +30,7 @@ navegacaoAlbum("1"):- estatistica, album.
 navegacaoAlbum("2"):- write('').
 navegacaoAlbum(_):- write("Digite uma opção válida\n"), entradaAlbum.
 
+
 estatistica :-
     shell(clear),
     getAlbum(Album),

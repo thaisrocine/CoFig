@@ -78,12 +78,6 @@ decrementaRepetidas(Quantidade) :-
     NovoValor is Atual - Quantidade,
     alteraArquivo('arquivos/repetidas.txt', NovoValor).
 
-verificaDinheiroERepetida :-
-    getDinheiro(Dinheiro),
-    getRepetidas(Repetidas),
-    Dinheiro =< 0, Repetidas =< 0,
-    acrescentaDinheiro.
-
 marcarAlbum([]).
 
 marcarAlbum([H|T]) :-
